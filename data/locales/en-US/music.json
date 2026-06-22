@@ -487,5 +487,35 @@
         "max": 155
       }
     ]
+  },
+  "lyrics": {
+    "openings": [
+      "I found your shadow in the morning light",
+      "We drove all night through the silent rain",
+      "The city was glowing like a broken sign",
+      "I heard your voice on an empty train",
+      "We left our names on the bedroom wall"
+    ],
+    "middles": [
+      "and every heartbeat sounded out of time",
+      "while the radio played our favorite line",
+      "but the summer kept slipping away",
+      "with a little more hope than yesterday",
+      "like a secret that nobody could keep"
+    ],
+    "choruses": [
+      "Hold on, hold on, we are burning bright",
+      "Come back, come back, to the neon night",
+      "Run fast, run free, through the open sky",
+      "Stay close, stay close, till the morning light",
+      "Sing loud, sing loud, while the world goes by"
+    ],
+    "endings": [
+      "and I still remember the sound",
+      "but we never came down",
+      "with our feet above the ground",
+      "till the lights went out",
+      "and the night turned gold"
+    ]
   }
 }

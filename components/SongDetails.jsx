@@ -10,7 +10,7 @@ export function SongDetails({ song }) {
 }
 
 function SongDetailsContent({ song }) {
-    return <Box><SongDetailsMeta song={song} /><AudioPlayer music={song.music} /><Typography sx={{ mt: 2 }}>{song.review}</Typography></Box>;
+    return <Box><SongDetailsMeta song={song} /><AudioPlayer music={song.music} lyrics={song.lyrics} /><Typography sx={{ mt: 2 }}>{song.review}</Typography></Box>;
 }
 
 const detailsStyles = { display: 'flex', gap: 3, p: 3 };

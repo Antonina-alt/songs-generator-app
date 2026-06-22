@@ -10,5 +10,5 @@ export function SongCard({ song }) {
 }
 
 function SongCardContent({ song }) {
-    return <CardContent><SongCardMeta song={song} /><AudioPlayer music={song.music} /></CardContent>;
+    return <CardContent><SongCardMeta song={song} /><AudioPlayer music={song.music} lyrics={song.lyrics} /></CardContent>;
 }
