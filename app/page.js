@@ -8,18 +8,20 @@ import { SongsTable } from '@/components/SongsTable';
 import { ViewSwitcher } from '@/components/ViewSwitcher';
 import { useSongFilters } from '@/hooks/useSongFilters';
 import { DEFAULT_SEED, VIEW_TYPES } from '@/lib/songs/constants';
+import { getUiText } from '@/lib/uiText';
 
 export default function HomePage() {
     const [view, setView] = useState(VIEW_TYPES.table);
     const tablePageState = useState(1);
     const { filters, galleryRef, updateFilter } = useSongFilters();
+    const uiText = getUiText(filters.region);
     const handlers = createPageHandlers(updateFilter, tablePageState[1]);
 
     return (
         <PageLayout>
-            <AppToolbar {...filters} {...handlers.toolbar} />
-            <ViewSwitcher view={view} onViewChange={setView} />
-            <SongsView {...handlers.table} view={view} filters={filters} galleryRef={galleryRef} page={tablePageState[0]} />
+            <AppToolbar {...filters} {...handlers.toolbar} uiText={uiText} />
+            <ViewSwitcher view={view} onViewChange={setView} uiText={uiText} />
+            <SongsView {...handlers.table} view={view} filters={filters} galleryRef={galleryRef} page={tablePageState[0]} uiText={uiText} />
         </PageLayout>
     );
 }
@@ -28,9 +30,9 @@ function PageLayout({ children }) {
     return <Container maxWidth="xl"><Box sx={{ py: 3 }}>{children}</Box></Container>;
 }
 
-function SongsView({ view, filters, page, galleryRef, onPageChange }) {
-    if (view === VIEW_TYPES.gallery) return <GalleryView ref={galleryRef} {...filters} />;
-    return <SongsTable {...filters} page={page} onPageChange={onPageChange} />;
+function SongsView({ view, filters, page, galleryRef, onPageChange, uiText }) {
+    if (view === VIEW_TYPES.gallery) return <GalleryView ref={galleryRef} {...filters} uiText={uiText} />;
+    return <SongsTable {...filters} page={page} onPageChange={onPageChange} uiText={uiText} />;
 }
 
 function createPageHandlers(updateFilter, setTablePage) {

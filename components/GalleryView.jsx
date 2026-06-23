@@ -1,9 +1,8 @@
 'use client';
 
-import { forwardRef, useRef } from 'react';
+import { forwardRef } from 'react';
 import { Box, CircularProgress, Grid } from '@mui/material';
-import { ErrorState } from './common/ErrorState';
-import { LoadingState } from './common/LoadingState';
+import { QueryState } from './common/QueryState';
 import { SongCard } from './SongCard';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { useInfiniteSongsQuery } from '@/hooks/useInfiniteSongsQuery';
@@ -14,30 +13,27 @@ const galleryStyles = {
     pr: 1
 };
 
-export const GalleryView = forwardRef(function GalleryView(props, ref) {
-    const loaderRef = useRef(null);
-    const query = useInfiniteSongsQuery(props);
+export const GalleryView = forwardRef(function GalleryView({ uiText, ...queryParams }, ref) {
+    const query = useInfiniteSongsQuery(queryParams);
     const songs = getQuerySongs(query);
-
-    useGalleryInfiniteScroll(loaderRef, query);
-
-    if (query.isLoading) return <LoadingState />;
-    if (query.isError) return <ErrorState message="Failed to load songs." />;
+    const loaderRef = useGalleryInfiniteScroll(query);
 
     return (
-        <Box ref={ref} sx={galleryStyles}>
-            <GalleryGrid songs={songs} />
-            <Loader ref={loaderRef} isLoading={query.isFetchingNextPage} />
-        </Box>
+        <QueryState query={query} errorMessage={uiText.messages.loadSongsError}>
+            <Box ref={ref} sx={galleryStyles}>
+                <GalleryGrid songs={songs} uiText={uiText} />
+                <Loader ref={loaderRef} isLoading={query.isFetchingNextPage} />
+            </Box>
+        </QueryState>
     );
 });
 
-function GalleryGrid({ songs }) {
-    return <Grid container spacing={2}>{songs.map(renderSongCard)}</Grid>;
+function GalleryGrid({ songs, uiText }) {
+    return <Grid container spacing={2}>{songs.map((song) => renderSongCard(song, uiText))}</Grid>;
 }
 
-function renderSongCard(song) {
-    return <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={song.index}><SongCard song={song} /></Grid>;
+function renderSongCard(song, uiText) {
+    return <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={song.index}><SongCard song={song} uiText={uiText} /></Grid>;
 }
 
 const Loader = forwardRef(function Loader({ isLoading }, ref) {
@@ -48,9 +44,8 @@ function getQuerySongs(query) {
     return query.data?.pages.flatMap((page) => page.items) ?? [];
 }
 
-function useGalleryInfiniteScroll(loaderRef, query) {
-    useInfiniteScroll({
-        loaderRef,
+function useGalleryInfiniteScroll(query) {
+    return useInfiniteScroll({
         canLoad: query.hasNextPage && !query.isFetchingNextPage,
         onLoad: query.fetchNextPage
     });

@@ -2,12 +2,12 @@
 
 import { Box, Slider, Typography } from '@mui/material';
 
-export function LikesSlider({ value, onChange }) {
-    return <Box sx={{ width: 260 }}><LikesLabel value={value} /><LikesControl value={value} onChange={onChange} /></Box>;
+export function LikesSlider({ value, onChange, uiText }) {
+    return <Box sx={{ width: 260 }}><LikesLabel value={value} uiText={uiText} /><LikesControl value={value} onChange={onChange} /></Box>;
 }
 
-function LikesLabel({ value }) {
-    return <Typography variant="body2">Likes per song: {Number(value).toFixed(1)}</Typography>;
+function LikesLabel({ value, uiText }) {
+    return <Typography variant="body2">{uiText.controls.likesPerSong}: {Number(value).toFixed(1)}</Typography>;
 }
 
 function LikesControl({ value, onChange }) {

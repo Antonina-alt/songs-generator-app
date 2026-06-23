@@ -20,14 +20,14 @@ export function AppToolbar(props) {
 function ToolbarControls(props) {
     return (
         <>
-            <RegionSelect value={props.region} onChange={props.onRegionChange} />
-            <SeedInput value={props.seed} onChange={props.onSeedChange} />
-            <RandomSeedButton onClick={props.onRandomSeed} />
-            <LikesSlider value={props.likes} onChange={props.onLikesChange} />
+            <RegionSelect value={props.region} onChange={props.onRegionChange} uiText={props.uiText} />
+            <SeedInput value={props.seed} onChange={props.onSeedChange} uiText={props.uiText} />
+            <RandomSeedButton onClick={props.onRandomSeed} uiText={props.uiText} />
+            <LikesSlider value={props.likes} onChange={props.onLikesChange} uiText={props.uiText} />
         </>
     );
 }
 
-function RandomSeedButton({ onClick }) {
-    return <Button variant="contained" onClick={onClick}>Random seed</Button>;
+function RandomSeedButton({ onClick, uiText }) {
+    return <Button variant="contained" onClick={onClick}>{uiText.controls.randomSeed}</Button>;
 }

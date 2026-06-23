@@ -2,6 +2,6 @@
 
 import { TextField } from '@mui/material';
 
-export function SeedInput({ value, onChange }) {
-    return <TextField size="small" label="Seed" value={value} onChange={(event) => onChange(event.target.value)} />;
+export function SeedInput({ value, onChange, uiText }) {
+    return <TextField size="small" label={uiText.controls.seed} value={value} onChange={(event) => onChange(event.target.value)} />;
 }

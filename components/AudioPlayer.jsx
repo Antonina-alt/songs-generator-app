@@ -4,21 +4,21 @@ import { Box, Button } from '@mui/material';
 import { useAudioPreview } from '@/hooks/useAudioPreview';
 import { LyricsDisplay } from './LyricsDisplay';
 
-export function AudioPlayer({ music, lyrics }) {
+export function AudioPlayer({ music, lyrics, uiText }) {
     const playback = useAudioPreview(music, lyrics);
-    return <Box><PreviewButton music={music} playback={playback} /><PreviewLyrics lyrics={lyrics} playback={playback} /></Box>;
+    return <Box><PreviewButton music={music} playback={playback} uiText={uiText} /><PreviewLyrics lyrics={lyrics} playback={playback} uiText={uiText} /></Box>;
 }
 
-function PreviewButton({ music, playback }) {
-    return <Button variant="outlined" onClick={playback.togglePreview} disabled={!canPlay(music)}>{getButtonLabel(playback)}</Button>;
+function PreviewButton({ music, playback, uiText }) {
+    return <Button variant="outlined" onClick={playback.togglePreview} disabled={!canPlay(music)}>{getButtonLabel(playback, uiText)}</Button>;
 }
 
-function PreviewLyrics({ lyrics, playback }) {
-    return <LyricsDisplay lyrics={lyrics} currentTime={playback.currentTime} isPlaying={playback.isPlaying} />;
+function PreviewLyrics({ lyrics, playback, uiText }) {
+    return <LyricsDisplay lyrics={lyrics} currentTime={playback.currentTime} isPlaying={playback.isPlaying} uiText={uiText} />;
 }
 
-function getButtonLabel({ isPlaying }) {
-    return isPlaying ? 'Stop preview' : 'Play preview';
+function getButtonLabel({ isPlaying }, uiText) {
+    return isPlaying ? uiText.player.stopPreview : uiText.player.playPreview;
 }
 
 function canPlay(music) {

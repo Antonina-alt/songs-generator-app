@@ -33,7 +33,7 @@ function canPlay(music) {
 async function startPreview({ music, lyrics, playerRef, setPlayback }) {
     await Tone.start();
     stopPreview({ playerRef, setPlayback });
-    playerRef.current = createPlayer(music, lyrics, setCurrentTime(setPlayback), () => stopPreview({ playerRef, setPlayback }));
+    playerRef.current = await createPlayer(music, lyrics, setCurrentTime(setPlayback), () => stopPreview({ playerRef, setPlayback }));
     setPlayback({ isPlaying: true, currentTime: 0 });
 }
 

@@ -4,43 +4,44 @@ import { Fragment, useState } from 'react';
 import { Box, Collapse, IconButton, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { ErrorState } from './common/ErrorState';
-import { LoadingState } from './common/LoadingState';
+import { QueryState } from './common/QueryState';
 import { SongDetails } from './SongDetails';
-import { TABLE_COLUMNS, TABLE_PAGE_COUNT } from '@/lib/songs/constants';
+import { TABLE_PAGE_COUNT } from '@/lib/songs/constants';
 import { useSongsQuery } from '@/hooks/useSongsQuery';
 
 export function SongsTable(props) {
     const [expandedId, setExpandedId] = useState(null);
     const query = useSongsQuery(createQueryParams(props));
 
-    if (query.isLoading) return <LoadingState />;
-    if (query.isError) return <ErrorState message="Failed to load songs." />;
-    return <SongsTableContent {...props} songs={query.data.items} expandedId={expandedId} onExpand={setExpandedId} />;
+    return (
+        <QueryState query={query} errorMessage={props.uiText.messages.loadSongsError}>
+            <SongsTableContent {...props} songs={query.data?.items ?? []} expandedId={expandedId} onExpand={setExpandedId} />
+        </QueryState>
+    );
 }
 
-function SongsTableContent({ songs, page, expandedId, onExpand, onPageChange }) {
-    return <Box><SongsTablePanel songs={songs} expandedId={expandedId} onExpand={onExpand} /><TablePagination page={page} onPageChange={onPageChange} /></Box>;
+function SongsTableContent({ songs, page, expandedId, onExpand, onPageChange, uiText }) {
+    return <Box><SongsTablePanel songs={songs} expandedId={expandedId} onExpand={onExpand} uiText={uiText} /><TablePagination page={page} onPageChange={onPageChange} /></Box>;
 }
 
-function SongsTablePanel({ songs, expandedId, onExpand }) {
-    return <TableContainer component={Paper}><Table><TableHeader /><TableBody>{songs.map((song) => renderSongRow(song, expandedId, onExpand))}</TableBody></Table></TableContainer>;
+function SongsTablePanel({ songs, expandedId, onExpand, uiText }) {
+    return <TableContainer component={Paper}><Table><TableHeader columns={uiText.table.columns} /><TableBody>{songs.map((song) => renderSongRow(song, expandedId, onExpand, uiText))}</TableBody></Table></TableContainer>;
 }
 
-function TableHeader() {
-    return <TableHead><TableRow>{TABLE_COLUMNS.map(renderHeaderCell)}</TableRow></TableHead>;
+function TableHeader({ columns }) {
+    return <TableHead><TableRow>{columns.map(renderHeaderCell)}</TableRow></TableHead>;
 }
 
 function renderHeaderCell(column) {
     return <TableCell key={column}>{column}</TableCell>;
 }
 
-function renderSongRow(song, expandedId, onExpand) {
-    return <SongRow key={song.index} song={song} isExpanded={expandedId === song.index} onExpand={onExpand} />;
+function renderSongRow(song, expandedId, onExpand, uiText) {
+    return <SongRow key={song.index} song={song} isExpanded={expandedId === song.index} onExpand={onExpand} uiText={uiText} />;
 }
 
-function SongRow({ song, isExpanded, onExpand }) {
-    return <Fragment><SongSummaryRow song={song} isExpanded={isExpanded} onExpand={onExpand} /><SongDetailsRow song={song} isExpanded={isExpanded} /></Fragment>;
+function SongRow({ song, isExpanded, onExpand, uiText }) {
+    return <Fragment><SongSummaryRow song={song} isExpanded={isExpanded} onExpand={onExpand} /><SongDetailsRow song={song} isExpanded={isExpanded} uiText={uiText} /></Fragment>;
 }
 
 function SongSummaryRow({ song, isExpanded, onExpand }) {
@@ -59,8 +60,8 @@ function ExpandIcon({ isExpanded }) {
     return <IconButton size="small">{isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}</IconButton>;
 }
 
-function SongDetailsRow({ song, isExpanded }) {
-    return <TableRow><TableCell colSpan={TABLE_COLUMNS.length} sx={{ py: 0 }}><Collapse in={isExpanded} timeout="auto" unmountOnExit><SongDetails song={song} /></Collapse></TableCell></TableRow>;
+function SongDetailsRow({ song, isExpanded, uiText }) {
+    return <TableRow><TableCell colSpan={uiText.table.columns.length} sx={{ py: 0 }}><Collapse in={isExpanded} timeout="auto" unmountOnExit><SongDetails song={song} uiText={uiText} /></Collapse></TableCell></TableRow>;
 }
 
 function TablePagination({ page, onPageChange }) {

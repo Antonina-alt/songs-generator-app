@@ -2,13 +2,13 @@
 
 import { Typography } from '@mui/material';
 
-export function SongCardMeta({ song }) {
+export function SongCardMeta({ song, uiText }) {
     return (
         <>
             <SongTitle song={song} />
             <MutedText>{song.artist}</MutedText>
             <MutedText>{song.album}</MutedText>
-            <SongStats song={song} />
+            <SongStats song={song} uiText={uiText} />
         </>
     );
 }
@@ -27,8 +27,8 @@ function SongTitle({ song }) {
     return <Typography variant="h6" noWrap>{song.index}. {song.title}</Typography>;
 }
 
-function SongStats({ song }) {
-    return <Typography variant="body2" sx={{ mb: 1 }}>{song.genre} · {song.likes} likes</Typography>;
+function SongStats({ song, uiText }) {
+    return <Typography variant="body2" sx={{ mb: 1 }}>{song.genre} · {song.likes} {uiText.song.likes}</Typography>;
 }
 
 function MutedText({ children }) {
