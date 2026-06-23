@@ -1,4 +1,5 @@
 'use client';
+import { createRandomSeed64 } from '@/lib/randomGenerator';
 
 import { useState } from 'react';
 import { Box, Container } from '@mui/material';
@@ -7,7 +8,7 @@ import { GalleryView } from '@/components/GalleryView';
 import { SongsTable } from '@/components/SongsTable';
 import { ViewSwitcher } from '@/components/ViewSwitcher';
 import { useSongFilters } from '@/hooks/useSongFilters';
-import { DEFAULT_SEED, VIEW_TYPES } from '@/lib/songs/constants';
+import { VIEW_TYPES } from '@/lib/songs/constants';
 import { getUiText } from '@/lib/uiText';
 
 export default function HomePage() {
@@ -57,5 +58,5 @@ function createFiltersUpdater(updateFilter, setTablePage) {
 }
 
 function createRandomSeed() {
-    return String(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER) || DEFAULT_SEED);
+    return createRandomSeed64();
 }

@@ -9,7 +9,7 @@ const toolbarStyles = {
     display: 'flex',
     gap: 2,
     alignItems: 'center',
-    mb: 3,
+    mb: 5,
     flexWrap: 'wrap'
 };
 

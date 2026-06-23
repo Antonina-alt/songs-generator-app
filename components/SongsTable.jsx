@@ -1,13 +1,13 @@
 'use client';
 
 import { Fragment, useState } from 'react';
-import { Box, Collapse, IconButton, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Box, Collapse, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination as MuiTablePagination } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { QueryState } from './common/QueryState';
 import { SongDetails } from './SongDetails';
-import { TABLE_PAGE_COUNT } from '@/lib/songs/constants';
 import { useSongsQuery } from '@/hooks/useSongsQuery';
+import { SONGS_PAGE_SIZE } from '@/lib/songs/constants';
 
 export function SongsTable(props) {
     const [expandedId, setExpandedId] = useState(null);
@@ -21,7 +21,7 @@ export function SongsTable(props) {
 }
 
 function SongsTableContent({ songs, page, expandedId, onExpand, onPageChange, uiText }) {
-    return <Box><SongsTablePanel songs={songs} expandedId={expandedId} onExpand={onExpand} uiText={uiText} /><TablePagination page={page} onPageChange={onPageChange} /></Box>;
+    return <Box><SongsTablePanel songs={songs} expandedId={expandedId} onExpand={onExpand} uiText={uiText} /><SongsTablePagination page={page} onPageChange={onPageChange} uiText={uiText}/></Box>;
 }
 
 function SongsTablePanel({ songs, expandedId, onExpand, uiText }) {
@@ -64,8 +64,25 @@ function SongDetailsRow({ song, isExpanded, uiText }) {
     return <TableRow><TableCell colSpan={uiText.table.columns.length} sx={{ py: 0 }}><Collapse in={isExpanded} timeout="auto" unmountOnExit><SongDetails song={song} uiText={uiText} /></Collapse></TableCell></TableRow>;
 }
 
-function TablePagination({ page, onPageChange }) {
-    return <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}><Pagination page={page} count={TABLE_PAGE_COUNT} onChange={(_, nextPage) => onPageChange(nextPage)} /></Box>;
+function SongsTablePagination({ page, onPageChange, uiText }) {
+    return (
+        <Box sx={{ mt: 2 }}>
+            <MuiTablePagination
+                component="div"
+                count={-1}
+                page={page - 1}
+                rowsPerPage={SONGS_PAGE_SIZE}
+                rowsPerPageOptions={[]}
+                onPageChange={(_, nextPage) => onPageChange(nextPage + 1)}
+                labelDisplayedRows={({ from, to }) =>
+                    uiText.table.pagination.displayedRows(from, to, page)
+                }
+                getItemAriaLabel={(type) =>
+                    uiText.table.pagination.ariaLabel[type]
+                }
+            />
+        </Box>
+    );
 }
 
 function createQueryParams({ region, seed, likes, page }) {
