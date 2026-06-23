@@ -14,11 +14,18 @@ const toolbarStyles = {
 };
 
 export function AppToolbar(props) {
-    return <Box sx={toolbarStyles}>{renderToolbarControls(props)}</Box>;
+    return <Box sx={toolbarStyles}><ToolbarControls {...props} /></Box>;
 }
 
-function renderToolbarControls(props) {
-    return <><RegionSelect value={props.region} onChange={props.onRegionChange} /><SeedInput value={props.seed} onChange={props.onSeedChange} /><RandomSeedButton onClick={props.onRandomSeed} /><LikesSlider value={props.likes} onChange={props.onLikesChange} /></>;
+function ToolbarControls(props) {
+    return (
+        <>
+            <RegionSelect value={props.region} onChange={props.onRegionChange} />
+            <SeedInput value={props.seed} onChange={props.onSeedChange} />
+            <RandomSeedButton onClick={props.onRandomSeed} />
+            <LikesSlider value={props.likes} onChange={props.onLikesChange} />
+        </>
+    );
 }
 
 function RandomSeedButton({ onClick }) {

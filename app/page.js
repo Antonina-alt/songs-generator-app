@@ -11,19 +11,40 @@ import { DEFAULT_SEED, VIEW_TYPES } from '@/lib/songs/constants';
 
 export default function HomePage() {
     const [view, setView] = useState(VIEW_TYPES.table);
-    const [tablePage, setTablePage] = useState(1);
+    const tablePageState = useState(1);
     const { filters, galleryRef, updateFilter } = useSongFilters();
-    const updateFilters = createFiltersUpdater(updateFilter, setTablePage);
-    return <PageLayout><AppToolbar {...filters} onRegionChange={updateFilters('region')} onSeedChange={updateFilters('seed')} onLikesChange={updateFilters('likes')} onRandomSeed={() => updateFilters('seed')(createRandomSeed())} /><ViewSwitcher view={view} onViewChange={setView} /><SongsView view={view} filters={filters} tablePage={tablePage} galleryRef={galleryRef} onPageChange={setTablePage} /></PageLayout>;
+    const handlers = createPageHandlers(updateFilter, tablePageState[1]);
+
+    return (
+        <PageLayout>
+            <AppToolbar {...filters} {...handlers.toolbar} />
+            <ViewSwitcher view={view} onViewChange={setView} />
+            <SongsView {...handlers.table} view={view} filters={filters} galleryRef={galleryRef} page={tablePageState[0]} />
+        </PageLayout>
+    );
 }
 
 function PageLayout({ children }) {
     return <Container maxWidth="xl"><Box sx={{ py: 3 }}>{children}</Box></Container>;
 }
 
-function SongsView({ view, filters, tablePage, galleryRef, onPageChange }) {
+function SongsView({ view, filters, page, galleryRef, onPageChange }) {
     if (view === VIEW_TYPES.gallery) return <GalleryView ref={galleryRef} {...filters} />;
-    return <SongsTable {...filters} page={tablePage} onPageChange={onPageChange} />;
+    return <SongsTable {...filters} page={page} onPageChange={onPageChange} />;
+}
+
+function createPageHandlers(updateFilter, setTablePage) {
+    const updateFilters = createFiltersUpdater(updateFilter, setTablePage);
+    return { toolbar: createToolbarHandlers(updateFilters), table: { onPageChange: setTablePage } };
+}
+
+function createToolbarHandlers(updateFilters) {
+    return {
+        onRegionChange: updateFilters('region'),
+        onSeedChange: updateFilters('seed'),
+        onLikesChange: updateFilters('likes'),
+        onRandomSeed: () => updateFilters('seed')(createRandomSeed())
+    };
 }
 
 function createFiltersUpdater(updateFilter, setTablePage) {
