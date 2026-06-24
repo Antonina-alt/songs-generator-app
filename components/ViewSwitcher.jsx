@@ -4,7 +4,15 @@ import { Box, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { VIEW_TYPES } from '@/lib/songs/constants';
 
 export function ViewSwitcher({ view, onViewChange, uiText }) {
-    return <Box sx={{ mb: 2 }}><ToggleButtonGroup exclusive value={view} onChange={(_, nextView) => nextView && onViewChange(nextView)}>{createViewOptions(uiText).map(renderOption)}</ToggleButtonGroup></Box>;
+    return <Box sx={{ mb: 2 }}><ViewToggleGroup view={view} onViewChange={onViewChange} uiText={uiText} /></Box>;
+}
+
+function ViewToggleGroup({ view, onViewChange, uiText }) {
+    return <ToggleButtonGroup exclusive value={view} onChange={createViewChangeHandler(onViewChange)}>{createViewOptions(uiText).map(renderOption)}</ToggleButtonGroup>;
+}
+
+function createViewChangeHandler(onViewChange) {
+    return (_, nextView) => nextView && onViewChange(nextView);
 }
 
 function createViewOptions(uiText) {

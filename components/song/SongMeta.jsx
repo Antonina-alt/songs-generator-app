@@ -3,34 +3,54 @@
 import { Typography } from '@mui/material';
 
 export function SongCardMeta({ song, uiText }) {
-    return (
-        <>
-            <SongTitle song={song} />
-            <MutedText>{song.artist}</MutedText>
-            <MutedText>{song.album}</MutedText>
-            <SongStats song={song} uiText={uiText} />
-        </>
-    );
+    return <SongMetaLayout items={createCardMetaItems(song, uiText)} />;
 }
 
 export function SongDetailsMeta({ song }) {
-    return (
-        <>
-            <Typography variant="h6">{song.title}</Typography>
-            <Typography variant="subtitle1">{song.artist}</Typography>
-            <Typography variant="body2" sx={{ mb: 2 }}>{song.album} · {song.genre}</Typography>
-        </>
-    );
+    return <SongMetaLayout items={createDetailsMetaItems(song)} />;
 }
 
-function SongTitle({ song }) {
-    return <Typography variant="h6" noWrap>{song.index}. {song.title}</Typography>;
+function SongMetaLayout({ items }) {
+    return <>{items.map(renderMetaItem)}</>;
 }
 
-function SongStats({ song, uiText }) {
-    return <Typography variant="body2" sx={{ mb: 1 }}>{song.genre} · {song.likes} {uiText.song.likes}</Typography>;
+function renderMetaItem(item) {
+    return <Typography key={item.key} {...item.props}>{item.text}</Typography>;
 }
 
-function MutedText({ children }) {
-    return <Typography variant="body2" color="text.secondary" noWrap>{children}</Typography>;
+function createCardMetaItems(song, uiText) {
+    return [
+        createTitleItem(`${song.index}. ${song.title}`, true),
+        createMutedItem('artist', song.artist, true),
+        createMutedItem('album', song.album, true),
+        createBodyItem('stats', `${song.genre} · ${song.likes} ${uiText.song.likes}`, { mb: 1 })
+    ];
+}
+
+function createDetailsMetaItems(song) {
+    return [
+        createTitleItem(song.title),
+        createSubtitleItem('artist', song.artist),
+        createBodyItem('albumGenre', `${song.album} · ${song.genre}`, { mb: 2 })
+    ];
+}
+
+function createTitleItem(text, noWrap = false) {
+    return createMetaItem('title', text, { variant: 'h6', noWrap });
+}
+
+function createSubtitleItem(key, text) {
+    return createMetaItem(key, text, { variant: 'subtitle1' });
+}
+
+function createMutedItem(key, text, noWrap) {
+    return createMetaItem(key, text, { variant: 'body2', color: 'text.secondary', noWrap });
+}
+
+function createBodyItem(key, text, sx) {
+    return createMetaItem(key, text, { variant: 'body2', sx });
+}
+
+function createMetaItem(key, text, props) {
+    return { key, text, props };
 }

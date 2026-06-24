@@ -2,15 +2,22 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchSongs } from '@/lib/songs/api';
-import { isValidSeed64 } from '@/lib/randomGenerator';
+import { createSongsQueryKey, isSongsQueryEnabled } from '@/lib/songs/query';
 
 export function useInfiniteSongsQuery(params) {
-    const isSeedValid = isValidSeed64(params.seed);
-    return useInfiniteQuery({
-        queryKey: ['songs', 'gallery', params],
+    return useInfiniteQuery(createInfiniteSongsQueryOptions(params));
+}
+
+function createInfiniteSongsQueryOptions(params) {
+    return {
+        queryKey: createSongsQueryKey('gallery', params),
         queryFn: ({ pageParam }) => fetchSongs({ ...params, page: pageParam }),
-        getNextPageParam: (lastPage) => lastPage.page + 1,
+        getNextPageParam: getNextPageParam,
         initialPageParam: 1,
-        enabled: isSeedValid
-    });
+        enabled: isSongsQueryEnabled(params)
+    };
+}
+
+function getNextPageParam(lastPage) {
+    return lastPage.page + 1;
 }

@@ -14,18 +14,24 @@ const toolbarStyles = {
 };
 
 export function AppToolbar(props) {
-    return <Box sx={toolbarStyles}><ToolbarControls {...props} /></Box>;
+    return <Box sx={toolbarStyles}>{createToolbarControls(props)}</Box>;
 }
 
-function ToolbarControls(props) {
-    return (
-        <>
-            <RegionSelect value={props.region} onChange={props.onRegionChange} uiText={props.uiText} />
-            <SeedInput value={props.seed} onChange={props.onSeedChange} uiText={props.uiText} />
-            <RandomSeedButton onClick={props.onRandomSeed} uiText={props.uiText} />
-            <LikesSlider value={props.likes} onChange={props.onLikesChange} uiText={props.uiText} />
-        </>
-    );
+function createToolbarControls(props) {
+    return getToolbarControls(props).map(renderToolbarControl);
+}
+
+function getToolbarControls(props) {
+    return [
+        { key: 'region', node: <RegionSelect value={props.region} onChange={props.onRegionChange} uiText={props.uiText} /> },
+        { key: 'seed', node: <SeedInput value={props.seed} onChange={props.onSeedChange} uiText={props.uiText} /> },
+        { key: 'randomSeed', node: <RandomSeedButton onClick={props.onRandomSeed} uiText={props.uiText} /> },
+        { key: 'likes', node: <LikesSlider value={props.likes} onChange={props.onLikesChange} uiText={props.uiText} /> }
+    ];
+}
+
+function renderToolbarControl({ key, node }) {
+    return <Box key={key}>{node}</Box>;
 }
 
 function RandomSeedButton({ onClick, uiText }) {

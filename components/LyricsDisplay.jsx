@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Typography } from '@mui/material';
-import { forwardRef, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const lyricsStyles = {
     mt: 2,
@@ -21,30 +21,36 @@ export function LyricsDisplay({ lyrics = [], currentTime = 0, isPlaying = false,
 
 function LyricsPanel({ lyrics, currentTime, isPlaying, uiText }) {
     const containerRef = useRef(null);
-    const activeLineRef = useRef(null);
     const activeIndex = getActiveLineIndex(lyrics, currentTime);
 
-    useActiveLineScroll(containerRef, activeLineRef, activeIndex, isPlaying);
-    return <LyricsBox containerRef={containerRef} activeLineRef={activeLineRef} lyrics={lyrics} activeIndex={activeIndex} isPlaying={isPlaying} uiText={uiText} />;
+    useActiveLineScroll(containerRef, activeIndex, isPlaying);
+    return <LyricsBox containerRef={containerRef} lyrics={lyrics} activeIndex={activeIndex} isPlaying={isPlaying} uiText={uiText} />;
 }
 
-function LyricsBox({ containerRef, activeLineRef, lyrics, activeIndex, isPlaying, uiText }) {
-    return <Box ref={containerRef} sx={lyricsStyles}><LyricsTitle uiText={uiText} />{lyrics.map((line, index) => {
-        const active = isActive(index, activeIndex, isPlaying);
-        return <LyricsLine key={createLineKey(line)} ref={active ? activeLineRef : null} line={line} isActive={active} />;
-    })}</Box>;
+function LyricsBox({ containerRef, lyrics, activeIndex, isPlaying, uiText }) {
+    return <Box ref={containerRef} sx={lyricsStyles}><LyricsTitle uiText={uiText} />{lyrics.map((line, index) => renderLine(line, index, activeIndex, isPlaying))}</Box>;
 }
 
-function useActiveLineScroll(containerRef, activeLineRef, activeIndex, isPlaying) {
-    useEffect(() => scrollActiveLine(containerRef.current, activeLineRef.current, isPlaying), [activeIndex, activeLineRef, containerRef, isPlaying]);
+function renderLine(line, index, activeIndex, isPlaying) {
+    const active = isActive(index, activeIndex, isPlaying);
+    return <LyricsLine key={createLineKey(line)} line={line} isActive={active} />;
 }
 
-function scrollActiveLine(container, line, isPlaying) {
-    if (isPlaying && container && line) centerActiveLineInsideContainer(container, line);
+function useActiveLineScroll(containerRef, activeIndex, isPlaying) {
+    useEffect(() => scrollActiveLine(containerRef.current, isPlaying), [containerRef, activeIndex, isPlaying]);
+}
+
+function scrollActiveLine(container, isPlaying) {
+    if (!isPlaying || !container) return;
+    centerActiveLineInsideContainer(container, findActiveLine(container));
+}
+
+function findActiveLine(container) {
+    return container.querySelector('[data-active="true"]');
 }
 
 function centerActiveLineInsideContainer(container, line) {
-    container.scrollTop = Math.max(0, getTargetScrollTop(container, line));
+    if (line) container.scrollTop = Math.max(0, getTargetScrollTop(container, line));
 }
 
 function getTargetScrollTop(container, line) {
@@ -67,11 +73,9 @@ function LyricsTitle({ uiText }) {
     return <Typography variant="subtitle2" sx={{ mb: 1 }}>{uiText.player.lyrics}</Typography>;
 }
 
-const LyricsLine = forwardRef(function LyricsLine({ line, isActive }, ref) {
-    return <Typography ref={ref} sx={createLineStyles(isActive)}>{line.text}</Typography>;
-});
-
-LyricsLine.displayName = 'LyricsLine';
+function LyricsLine({ line, isActive }) {
+    return <Typography data-active={String(isActive)} sx={createLineStyles(isActive)}>{line.text}</Typography>;
+}
 
 function createLineStyles(isActive) {
     return { pl: 1.5, py: 0.4, fontWeight: isActive ? 700 : 400, opacity: isActive ? 1 : 0.55, transform: isActive ? 'scale(1.02)' : 'scale(1)', transformOrigin: 'left center', transition: 'all 0.2s ease' };

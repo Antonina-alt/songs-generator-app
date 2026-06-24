@@ -1,15 +1,19 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { fetchSongs } from '@/lib/songs/api';
-import { isValidSeed64 } from '@/lib/randomGenerator';
+import { createSongsQueryKey, isSongsQueryEnabled } from '@/lib/songs/query';
 
 export function useSongsQuery(params) {
-    const isSeedValid = isValidSeed64(params.seed);
-    return useQuery({
-        queryKey: ['songs', 'table', params],
-        queryFn: () => fetchSongs(params),
-        keepPreviousData: true,
-        enabled: isSeedValid
-    });
+    return useQuery(createSongsQueryOptions(params));
 }
+
+function createSongsQueryOptions(params) {
+    return {
+        queryKey: createSongsQueryKey('table', params),
+        queryFn: () => fetchSongs(params),
+        placeholderData: keepPreviousData,
+        enabled: isSongsQueryEnabled(params)
+    };
+}
+
