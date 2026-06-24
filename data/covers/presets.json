@@ -1,0 +1,1274 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 600,
+    "height": 600,
+    "safeArea": {
+      "x": 48,
+      "y": 48,
+      "width": 504,
+      "height": 504
+    }
+  },
+  "palettes": [
+    {
+      "id": "neon_night",
+      "background": "#090A1F",
+      "primary": "#6D5DFB",
+      "secondary": "#00D4FF",
+      "accent": "#FF4ECD",
+      "muted": "#1C2142",
+      "text": "#FFFFFF"
+    },
+    {
+      "id": "sunset_tape",
+      "background": "#2A103D",
+      "primary": "#FF6B4A",
+      "secondary": "#FFD166",
+      "accent": "#6EE7B7",
+      "muted": "#5B2348",
+      "text": "#FFF7E6"
+    },
+    {
+      "id": "cream_vinyl",
+      "background": "#F6E7CB",
+      "primary": "#231F20",
+      "secondary": "#C14953",
+      "accent": "#4E8098",
+      "muted": "#D8C3A5",
+      "text": "#151515"
+    },
+    {
+      "id": "deep_ocean",
+      "background": "#061826",
+      "primary": "#0EA5E9",
+      "secondary": "#22D3EE",
+      "accent": "#A7F3D0",
+      "muted": "#12394A",
+      "text": "#ECFEFF"
+    },
+    {
+      "id": "candy_pop",
+      "background": "#FFF0F6",
+      "primary": "#FF4D8D",
+      "secondary": "#7C3AED",
+      "accent": "#FACC15",
+      "muted": "#F9A8D4",
+      "text": "#24112C"
+    },
+    {
+      "id": "forest_signal",
+      "background": "#071A12",
+      "primary": "#22C55E",
+      "secondary": "#84CC16",
+      "accent": "#FDE68A",
+      "muted": "#164E30",
+      "text": "#F0FDF4"
+    },
+    {
+      "id": "paper_collage",
+      "background": "#F8F1E5",
+      "primary": "#E63946",
+      "secondary": "#457B9D",
+      "accent": "#F4A261",
+      "muted": "#D9CAB3",
+      "text": "#1D1D1D"
+    },
+    {
+      "id": "mono_red",
+      "background": "#120B0B",
+      "primary": "#E11D48",
+      "secondary": "#FB7185",
+      "accent": "#FCA5A5",
+      "muted": "#3B111D",
+      "text": "#FFF1F2"
+    },
+    {
+      "id": "acid_lime",
+      "background": "#10140A",
+      "primary": "#A3E635",
+      "secondary": "#D9F99D",
+      "accent": "#38BDF8",
+      "muted": "#2A3516",
+      "text": "#F7FEE7"
+    },
+    {
+      "id": "purple_dusk",
+      "background": "#1B1029",
+      "primary": "#A855F7",
+      "secondary": "#EC4899",
+      "accent": "#FBBF24",
+      "muted": "#3B235A",
+      "text": "#FAF5FF"
+    },
+    {
+      "id": "blue_motel",
+      "background": "#0B1026",
+      "primary": "#2563EB",
+      "secondary": "#93C5FD",
+      "accent": "#F9A8D4",
+      "muted": "#172554",
+      "text": "#EFF6FF"
+    },
+    {
+      "id": "rust_desert",
+      "background": "#2C1810",
+      "primary": "#C2410C",
+      "secondary": "#FDBA74",
+      "accent": "#FACC15",
+      "muted": "#7C2D12",
+      "text": "#FFF7ED"
+    },
+    {
+      "id": "silver_screen",
+      "background": "#111827",
+      "primary": "#E5E7EB",
+      "secondary": "#9CA3AF",
+      "accent": "#F59E0B",
+      "muted": "#374151",
+      "text": "#F9FAFB"
+    },
+    {
+      "id": "mint_editorial",
+      "background": "#ECFDF5",
+      "primary": "#047857",
+      "secondary": "#10B981",
+      "accent": "#F97316",
+      "muted": "#A7F3D0",
+      "text": "#062E22"
+    },
+    {
+      "id": "black_gold",
+      "background": "#080808",
+      "primary": "#F59E0B",
+      "secondary": "#FDE68A",
+      "accent": "#FFFFFF",
+      "muted": "#292524",
+      "text": "#FFF8DC"
+    },
+    {
+      "id": "ice_glass",
+      "background": "#E0F2FE",
+      "primary": "#0284C7",
+      "secondary": "#7DD3FC",
+      "accent": "#C084FC",
+      "muted": "#BAE6FD",
+      "text": "#082F49"
+    },
+    {
+      "id": "hot_poster",
+      "background": "#FFEDD5",
+      "primary": "#EA580C",
+      "secondary": "#DC2626",
+      "accent": "#7C2D12",
+      "muted": "#FED7AA",
+      "text": "#1C1917"
+    },
+    {
+      "id": "midnight_green",
+      "background": "#031A16",
+      "primary": "#14B8A6",
+      "secondary": "#5EEAD4",
+      "accent": "#F472B6",
+      "muted": "#134E4A",
+      "text": "#F0FDFA"
+    },
+    {
+      "id": "soft_lavender",
+      "background": "#F5F3FF",
+      "primary": "#7C3AED",
+      "secondary": "#C4B5FD",
+      "accent": "#FB7185",
+      "muted": "#DDD6FE",
+      "text": "#2E1065"
+    },
+    {
+      "id": "radio_static",
+      "background": "#18181B",
+      "primary": "#D4D4D8",
+      "secondary": "#71717A",
+      "accent": "#22D3EE",
+      "muted": "#3F3F46",
+      "text": "#FAFAFA"
+    },
+    {
+      "id": "rose_cinema",
+      "background": "#2B0B18",
+      "primary": "#BE123C",
+      "secondary": "#FDA4AF",
+      "accent": "#FDE047",
+      "muted": "#5B1026",
+      "text": "#FFF1F2"
+    },
+    {
+      "id": "skyline_copper",
+      "background": "#0F172A",
+      "primary": "#F97316",
+      "secondary": "#38BDF8",
+      "accent": "#F8FAFC",
+      "muted": "#334155",
+      "text": "#F8FAFC"
+    },
+    {
+      "id": "warm_minimal",
+      "background": "#FAF7F0",
+      "primary": "#292524",
+      "secondary": "#A16207",
+      "accent": "#DC2626",
+      "muted": "#E7DCC7",
+      "text": "#1C1917"
+    },
+    {
+      "id": "digital_plum",
+      "background": "#16051E",
+      "primary": "#D946EF",
+      "secondary": "#8B5CF6",
+      "accent": "#22D3EE",
+      "muted": "#3B0A4F",
+      "text": "#FDF4FF"
+    },
+    {
+      "id": "fresh_marker",
+      "background": "#FEFCE8",
+      "primary": "#16A34A",
+      "secondary": "#CA8A04",
+      "accent": "#2563EB",
+      "muted": "#FEF08A",
+      "text": "#1A2E05"
+    },
+    {
+      "id": "cold_industrial",
+      "background": "#0C111D",
+      "primary": "#64748B",
+      "secondary": "#CBD5E1",
+      "accent": "#EF4444",
+      "muted": "#1E293B",
+      "text": "#F8FAFC"
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "smooth_gradient",
+      "weight": 4
+    },
+    {
+      "id": "radial_spotlight",
+      "weight": 5
+    },
+    {
+      "id": "split_blocks",
+      "weight": 7
+    },
+    {
+      "id": "low_poly",
+      "weight": 8,
+      "library": "delaunator"
+    },
+    {
+      "id": "paper_layers",
+      "weight": 8,
+      "library": "roughjs"
+    },
+    {
+      "id": "large_cutout_shapes",
+      "weight": 8
+    },
+    {
+      "id": "wave_layers",
+      "weight": 7
+    },
+    {
+      "id": "sun_and_horizon",
+      "weight": 6
+    },
+    {
+      "id": "tile_pattern",
+      "weight": 6
+    },
+    {
+      "id": "offset_rectangles",
+      "weight": 7
+    },
+    {
+      "id": "diagonal_fields",
+      "weight": 7
+    },
+    {
+      "id": "arch_window",
+      "weight": 5
+    },
+    {
+      "id": "poster_frame",
+      "weight": 6
+    },
+    {
+      "id": "torn_paper",
+      "weight": 6,
+      "library": "roughjs"
+    },
+    {
+      "id": "concentric_rings",
+      "weight": 6
+    },
+    {
+      "id": "noise_cloud",
+      "weight": 5
+    }
+  ],
+  "motifs": [
+    {
+      "id": "vinyl",
+      "weight": 10,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "bottom_label",
+        "record_sleeve",
+        "centered",
+        "split_poster"
+      ]
+    },
+    {
+      "id": "cassette",
+      "weight": 9,
+      "complexity": "high",
+      "compatibleLayouts": [
+        "top_title",
+        "bottom_label",
+        "magazine",
+        "split_poster"
+      ]
+    },
+    {
+      "id": "compact_disc",
+      "weight": 7,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "centered",
+        "bottom_label",
+        "circle_label"
+      ]
+    },
+    {
+      "id": "equalizer",
+      "weight": 9,
+      "complexity": "low",
+      "compatibleLayouts": [
+        "large_type",
+        "bottom_label",
+        "diagonal_band"
+      ]
+    },
+    {
+      "id": "waveform",
+      "weight": 10,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "centered",
+        "large_type",
+        "bottom_label",
+        "vertical_title"
+      ]
+    },
+    {
+      "id": "city_skyline",
+      "weight": 8,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "top_title",
+        "bottom_label",
+        "poster_stack"
+      ]
+    },
+    {
+      "id": "mountains",
+      "weight": 8,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "top_title",
+        "bottom_label",
+        "centered"
+      ]
+    },
+    {
+      "id": "stars_orbits",
+      "weight": 8,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "centered",
+        "circle_label",
+        "bottom_label"
+      ]
+    },
+    {
+      "id": "flowers",
+      "weight": 7,
+      "complexity": "high",
+      "compatibleLayouts": [
+        "magazine",
+        "bottom_label",
+        "split_poster"
+      ]
+    },
+    {
+      "id": "abstract_faces",
+      "weight": 5,
+      "complexity": "high",
+      "compatibleLayouts": [
+        "large_type",
+        "magazine",
+        "bottom_label"
+      ]
+    },
+    {
+      "id": "paper_cutouts",
+      "weight": 9,
+      "complexity": "high",
+      "compatibleLayouts": [
+        "magazine",
+        "split_poster",
+        "diagonal_band"
+      ]
+    },
+    {
+      "id": "sound_cables",
+      "weight": 6,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "bottom_label",
+        "vertical_title",
+        "poster_stack"
+      ]
+    },
+    {
+      "id": "keyboard_keys",
+      "weight": 6,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "top_title",
+        "bottom_label",
+        "large_type"
+      ]
+    },
+    {
+      "id": "drum_circles",
+      "weight": 7,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "centered",
+        "circle_label",
+        "bottom_label"
+      ]
+    },
+    {
+      "id": "neon_sign",
+      "weight": 6,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "centered",
+        "large_type",
+        "poster_stack"
+      ]
+    },
+    {
+      "id": "tape_reel",
+      "weight": 7,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "record_sleeve",
+        "bottom_label",
+        "split_poster"
+      ]
+    },
+    {
+      "id": "radio_tower",
+      "weight": 5,
+      "complexity": "medium",
+      "compatibleLayouts": [
+        "top_title",
+        "bottom_label",
+        "vertical_title"
+      ]
+    },
+    {
+      "id": "window_scene",
+      "weight": 5,
+      "complexity": "high",
+      "compatibleLayouts": [
+        "top_title",
+        "bottom_label",
+        "magazine"
+      ]
+    }
+  ],
+  "layouts": [
+    {
+      "id": "bottom_label",
+      "weight": 12,
+      "titlePosition": "bottom",
+      "artistPosition": "bottom",
+      "maxTitleLines": 3
+    },
+    {
+      "id": "top_title",
+      "weight": 8,
+      "titlePosition": "top",
+      "artistPosition": "bottom",
+      "maxTitleLines": 2
+    },
+    {
+      "id": "centered",
+      "weight": 9,
+      "titlePosition": "center",
+      "artistPosition": "center_under",
+      "maxTitleLines": 3
+    },
+    {
+      "id": "large_type",
+      "weight": 8,
+      "titlePosition": "large_center",
+      "artistPosition": "edge",
+      "maxTitleLines": 4
+    },
+    {
+      "id": "diagonal_band",
+      "weight": 8,
+      "titlePosition": "diagonal",
+      "artistPosition": "diagonal_under",
+      "maxTitleLines": 2
+    },
+    {
+      "id": "split_poster",
+      "weight": 8,
+      "titlePosition": "right_panel",
+      "artistPosition": "right_panel",
+      "maxTitleLines": 4
+    },
+    {
+      "id": "record_sleeve",
+      "weight": 7,
+      "titlePosition": "small_top_left",
+      "artistPosition": "small_bottom_left",
+      "maxTitleLines": 3
+    },
+    {
+      "id": "magazine",
+      "weight": 7,
+      "titlePosition": "editorial_stack",
+      "artistPosition": "caption",
+      "maxTitleLines": 4
+    },
+    {
+      "id": "circle_label",
+      "weight": 6,
+      "titlePosition": "inside_circle",
+      "artistPosition": "inside_circle",
+      "maxTitleLines": 3
+    },
+    {
+      "id": "vertical_title",
+      "weight": 5,
+      "titlePosition": "vertical_left",
+      "artistPosition": "bottom_right",
+      "maxTitleLines": 2
+    },
+    {
+      "id": "poster_stack",
+      "weight": 7,
+      "titlePosition": "stacked_blocks",
+      "artistPosition": "small_top",
+      "maxTitleLines": 4
+    },
+    {
+      "id": "floating_cards",
+      "weight": 6,
+      "titlePosition": "card_front",
+      "artistPosition": "card_back",
+      "maxTitleLines": 3
+    }
+  ],
+  "textures": [
+    {
+      "id": "grain",
+      "weight": 10,
+      "opacityRange": [
+        0.04,
+        0.12
+      ],
+      "densityRange": [
+        180,
+        420
+      ]
+    },
+    {
+      "id": "halftone",
+      "weight": 8,
+      "opacityRange": [
+        0.05,
+        0.16
+      ],
+      "densityRange": [
+        80,
+        200
+      ]
+    },
+    {
+      "id": "noise_dots",
+      "weight": 9,
+      "opacityRange": [
+        0.04,
+        0.14
+      ],
+      "densityRange": [
+        200,
+        520
+      ]
+    },
+    {
+      "id": "scanlines",
+      "weight": 6,
+      "opacityRange": [
+        0.04,
+        0.12
+      ],
+      "gapRange": [
+        5,
+        14
+      ]
+    },
+    {
+      "id": "paper_fibers",
+      "weight": 7,
+      "opacityRange": [
+        0.04,
+        0.13
+      ],
+      "densityRange": [
+        90,
+        220
+      ]
+    },
+    {
+      "id": "soft_grid",
+      "weight": 5,
+      "opacityRange": [
+        0.04,
+        0.1
+      ],
+      "gapRange": [
+        28,
+        64
+      ]
+    },
+    {
+      "id": "light_leaks",
+      "weight": 6,
+      "opacityRange": [
+        0.08,
+        0.22
+      ],
+      "densityRange": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "scratches",
+      "weight": 6,
+      "opacityRange": [
+        0.05,
+        0.16
+      ],
+      "densityRange": [
+        18,
+        56
+      ],
+      "library": "roughjs"
+    },
+    {
+      "id": "fold_marks",
+      "weight": 4,
+      "opacityRange": [
+        0.04,
+        0.12
+      ],
+      "densityRange": [
+        3,
+        9
+      ]
+    },
+    {
+      "id": "sticker_edges",
+      "weight": 5,
+      "opacityRange": [
+        0.06,
+        0.2
+      ],
+      "densityRange": [
+        4,
+        12
+      ],
+      "library": "roughjs"
+    }
+  ],
+  "frames": [
+    {
+      "id": "none",
+      "weight": 6
+    },
+    {
+      "id": "thin_border",
+      "weight": 8
+    },
+    {
+      "id": "double_border",
+      "weight": 7
+    },
+    {
+      "id": "thick_poster_border",
+      "weight": 7
+    },
+    {
+      "id": "rounded_label",
+      "weight": 6
+    },
+    {
+      "id": "off_center_mat",
+      "weight": 5
+    },
+    {
+      "id": "photo_print",
+      "weight": 5
+    },
+    {
+      "id": "rough_hand_drawn",
+      "weight": 6,
+      "library": "roughjs"
+    },
+    {
+      "id": "ticket_stub",
+      "weight": 4
+    },
+    {
+      "id": "vinyl_sleeve_cutout",
+      "weight": 4
+    }
+  ],
+  "shapeSets": [
+    {
+      "id": "geometric",
+      "weight": 9,
+      "shapes": [
+        "circle",
+        "rectangle",
+        "triangle",
+        "arc",
+        "line",
+        "polygon"
+      ]
+    },
+    {
+      "id": "organic",
+      "weight": 8,
+      "shapes": [
+        "blob",
+        "leaf",
+        "wave",
+        "oval",
+        "squiggle"
+      ]
+    },
+    {
+      "id": "music_hardware",
+      "weight": 8,
+      "shapes": [
+        "speaker",
+        "knob",
+        "slider",
+        "cable",
+        "jack",
+        "reel"
+      ]
+    },
+    {
+      "id": "celestial",
+      "weight": 6,
+      "shapes": [
+        "star",
+        "planet",
+        "orbit",
+        "moon",
+        "spark"
+      ]
+    },
+    {
+      "id": "urban",
+      "weight": 6,
+      "shapes": [
+        "window",
+        "building",
+        "sign",
+        "streetlight",
+        "stairs"
+      ]
+    },
+    {
+      "id": "editorial",
+      "weight": 7,
+      "shapes": [
+        "caption_box",
+        "rule_line",
+        "label",
+        "sticker",
+        "cutout"
+      ]
+    },
+    {
+      "id": "nature",
+      "weight": 6,
+      "shapes": [
+        "mountain",
+        "sun",
+        "cloud",
+        "flower",
+        "stem"
+      ]
+    },
+    {
+      "id": "digital",
+      "weight": 6,
+      "shapes": [
+        "pixel",
+        "glitch_block",
+        "scanline",
+        "cursor",
+        "matrix_dot"
+      ]
+    }
+  ],
+  "typography": [
+    {
+      "id": "bold_poster",
+      "weight": 8,
+      "titleScaleRange": [
+        42,
+        72
+      ],
+      "artistScaleRange": [
+        16,
+        26
+      ],
+      "letterSpacingRange": [
+        -1,
+        2
+      ],
+      "caseMode": "original"
+    },
+    {
+      "id": "small_label",
+      "weight": 7,
+      "titleScaleRange": [
+        24,
+        42
+      ],
+      "artistScaleRange": [
+        14,
+        22
+      ],
+      "letterSpacingRange": [
+        0,
+        3
+      ],
+      "caseMode": "original"
+    },
+    {
+      "id": "editorial_large",
+      "weight": 7,
+      "titleScaleRange": [
+        48,
+        86
+      ],
+      "artistScaleRange": [
+        14,
+        20
+      ],
+      "letterSpacingRange": [
+        -2,
+        1
+      ],
+      "caseMode": "original"
+    },
+    {
+      "id": "compact_block",
+      "weight": 6,
+      "titleScaleRange": [
+        30,
+        52
+      ],
+      "artistScaleRange": [
+        14,
+        24
+      ],
+      "letterSpacingRange": [
+        1,
+        4
+      ],
+      "caseMode": "original"
+    },
+    {
+      "id": "wide_tracking",
+      "weight": 5,
+      "titleScaleRange": [
+        28,
+        48
+      ],
+      "artistScaleRange": [
+        13,
+        19
+      ],
+      "letterSpacingRange": [
+        3,
+        8
+      ],
+      "caseMode": "original"
+    },
+    {
+      "id": "vertical_compact",
+      "weight": 4,
+      "titleScaleRange": [
+        28,
+        46
+      ],
+      "artistScaleRange": [
+        13,
+        20
+      ],
+      "letterSpacingRange": [
+        0,
+        3
+      ],
+      "caseMode": "original"
+    }
+  ],
+  "effects": [
+    {
+      "id": "none",
+      "weight": 8
+    },
+    {
+      "id": "subtle_shadow",
+      "weight": 10
+    },
+    {
+      "id": "soft_glow",
+      "weight": 7
+    },
+    {
+      "id": "duotone_overlay",
+      "weight": 6
+    },
+    {
+      "id": "multiply_blocks",
+      "weight": 6
+    },
+    {
+      "id": "misprint_offset",
+      "weight": 5
+    },
+    {
+      "id": "vignette",
+      "weight": 6
+    },
+    {
+      "id": "blurred_back_shape",
+      "weight": 6
+    }
+  ],
+  "roughOptions": {
+    "fillStyles": [
+      "hachure",
+      "solid",
+      "zigzag",
+      "cross-hatch",
+      "dots",
+      "dashed",
+      "zigzag-line"
+    ],
+    "roughnessRange": [
+      0.6,
+      2.8
+    ],
+    "bowingRange": [
+      0.4,
+      2.2
+    ],
+    "hachureGapRange": [
+      4,
+      14
+    ],
+    "strokeWidthRange": [
+      1,
+      5
+    ]
+  },
+  "motifSettings": {
+    "vinyl": {
+      "ringCountRange": [
+        4,
+        12
+      ],
+      "centerRadiusRange": [
+        34,
+        78
+      ],
+      "rotationRange": [
+        -14,
+        14
+      ]
+    },
+    "cassette": {
+      "reelCount": 2,
+      "screwCount": 4,
+      "labelHeightRange": [
+        88,
+        150
+      ],
+      "rotationRange": [
+        -8,
+        8
+      ]
+    },
+    "compact_disc": {
+      "ringCountRange": [
+        5,
+        14
+      ],
+      "holeRadiusRange": [
+        26,
+        56
+      ],
+      "shineCountRange": [
+        3,
+        8
+      ]
+    },
+    "equalizer": {
+      "barCountRange": [
+        18,
+        64
+      ],
+      "barHeightRange": [
+        24,
+        330
+      ],
+      "barWidthRange": [
+        4,
+        18
+      ]
+    },
+    "waveform": {
+      "pointCountRange": [
+        36,
+        120
+      ],
+      "amplitudeRange": [
+        40,
+        190
+      ],
+      "strokeWidthRange": [
+        3,
+        10
+      ]
+    },
+    "city_skyline": {
+      "buildingCountRange": [
+        8,
+        24
+      ],
+      "windowDensityRange": [
+        0.2,
+        0.75
+      ],
+      "horizonRange": [
+        320,
+        470
+      ]
+    },
+    "mountains": {
+      "layerCountRange": [
+        3,
+        7
+      ],
+      "peakCountRange": [
+        4,
+        12
+      ],
+      "sunRadiusRange": [
+        38,
+        110
+      ]
+    },
+    "stars_orbits": {
+      "starCountRange": [
+        28,
+        120
+      ],
+      "orbitCountRange": [
+        2,
+        8
+      ],
+      "planetCountRange": [
+        1,
+        5
+      ]
+    },
+    "flowers": {
+      "flowerCountRange": [
+        3,
+        14
+      ],
+      "petalCountRange": [
+        5,
+        12
+      ],
+      "stemCountRange": [
+        4,
+        18
+      ]
+    },
+    "abstract_faces": {
+      "faceCountRange": [
+        1,
+        3
+      ],
+      "featureCountRange": [
+        5,
+        12
+      ],
+      "lineWidthRange": [
+        2,
+        7
+      ]
+    },
+    "paper_cutouts": {
+      "cutoutCountRange": [
+        8,
+        26
+      ],
+      "rotationRange": [
+        -28,
+        28
+      ],
+      "scaleRange": [
+        0.55,
+        1.45
+      ]
+    },
+    "sound_cables": {
+      "cableCountRange": [
+        4,
+        14
+      ],
+      "plugCountRange": [
+        2,
+        8
+      ],
+      "strokeWidthRange": [
+        3,
+        9
+      ]
+    },
+    "keyboard_keys": {
+      "keyCountRange": [
+        18,
+        64
+      ],
+      "rowCountRange": [
+        3,
+        7
+      ],
+      "rotationRange": [
+        -12,
+        12
+      ]
+    },
+    "drum_circles": {
+      "circleCountRange": [
+        5,
+        18
+      ],
+      "radiusRange": [
+        34,
+        170
+      ],
+      "overlapRange": [
+        0.2,
+        0.75
+      ]
+    },
+    "neon_sign": {
+      "tubeCountRange": [
+        3,
+        9
+      ],
+      "glowRadiusRange": [
+        8,
+        28
+      ],
+      "strokeWidthRange": [
+        4,
+        12
+      ]
+    },
+    "tape_reel": {
+      "reelCountRange": [
+        2,
+        4
+      ],
+      "tapeLineCountRange": [
+        6,
+        22
+      ],
+      "radiusRange": [
+        70,
+        180
+      ]
+    },
+    "radio_tower": {
+      "beamCountRange": [
+        3,
+        8
+      ],
+      "signalArcCountRange": [
+        3,
+        9
+      ],
+      "heightRange": [
+        220,
+        420
+      ]
+    },
+    "window_scene": {
+      "paneCountRange": [
+        4,
+        16
+      ],
+      "objectCountRange": [
+        3,
+        10
+      ],
+      "curtainWaveRange": [
+        2,
+        8
+      ]
+    }
+  },
+  "generationRules": {
+    "avoidSamePaletteForAdjacentItems": false,
+    "useTitleAsRenderedText": true,
+    "useArtistAsRenderedText": true,
+    "useAlbumAsRenderedText": false,
+    "renderTechnicalIdsAsText": false,
+    "seededRandomRequired": true,
+    "likesMustNotAffectCover": true
+  }
+}

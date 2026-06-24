@@ -30,7 +30,7 @@ function createSongCoverSvg(params) {
 }
 
 function createCoverRandom({ region, seed, index }) {
-    return createRng('cover', region, seed, index);
+    return createRng('cover-art', region, seed, index);
 }
 
 function createSvgResponse(svg) {

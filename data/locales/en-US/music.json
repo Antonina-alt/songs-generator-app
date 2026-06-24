@@ -39,49 +39,6 @@
       "that sounds like the beginning of a promising album cycle."
     ]
   },
-  "cover": {
-    "paletteNames": [
-      "Sunset Drive",
-      "Neon City",
-      "Blue Motel",
-      "Desert Radio",
-      "Velvet Night",
-      "Golden Hour",
-      "Silver Static",
-      "Cherry Smoke",
-      "Ocean Tape",
-      "Electric Garden"
-    ],
-    "visualMotifs": [
-      "circles",
-      "waves",
-      "stars",
-      "grid",
-      "paper cutouts",
-      "window frames",
-      "vinyl rings",
-      "mountain silhouettes",
-      "city blocks",
-      "abstract flowers",
-      "cassette shapes",
-      "light leaks",
-      "checkerboard",
-      "halftone dots",
-      "hand-drawn lines"
-    ],
-    "layoutStyles": [
-      "centered title",
-      "bottom label",
-      "large typography",
-      "minimal frame",
-      "diagonal title",
-      "poster style",
-      "record sleeve",
-      "magazine cover",
-      "split layout",
-      "floating text"
-    ]
-  },
   "music": {
     "moods": [
       "uplifting",
