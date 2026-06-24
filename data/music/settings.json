@@ -1,0 +1,353 @@
+{
+  "keys": ["C", "D", "E", "F", "G", "A", "Bb"],
+  "modes": ["major", "minor"],
+
+  "tempoRanges": [
+    { "label": "slow", "min": 70, "max": 95 },
+    { "label": "medium", "min": 96, "max": 125 },
+    { "label": "fast", "min": 126, "max": 155 }
+  ],
+
+  "timing": {
+    "chordSeconds": 2,
+    "grooveLoopSeconds": 8,
+    "fallbackMelodyStepSeconds": 0.35,
+    "noteStepSeconds": {
+      "16n": 0.18,
+      "8n": 0.35,
+      "4n": 0.7,
+      "2n": 1.4
+    }
+  },
+
+  "sections": [
+    {
+      "name": "intro",
+      "role": "intro",
+      "bars": 2,
+      "energy": 0.35
+    },
+    {
+      "name": "verse-1",
+      "role": "verse",
+      "bars": 4,
+      "energy": 0.58
+    },
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "bars": 4,
+      "energy": 0.95
+    },
+    {
+      "name": "verse-2",
+      "role": "verse",
+      "bars": 4,
+      "energy": 0.65
+    },
+    {
+      "name": "outro",
+      "role": "outro",
+      "bars": 2,
+      "energy": 0.38
+    }
+  ],
+
+  "progressions": {
+    "major": {
+      "intro": [
+        ["I", "V", "vi", "IV"],
+        ["I", "IV", "I", "V"]
+      ],
+      "verse": [
+        ["I", "V", "vi", "IV"],
+        ["I", "vi", "IV", "V"],
+        ["vi", "IV", "I", "V"],
+        ["I", "IV", "V", "I"]
+      ],
+      "chorus": [
+        ["IV", "I", "V", "vi"],
+        ["I", "V", "IV", "I"],
+        ["vi", "IV", "I", "V"],
+        ["I", "V", "vi", "V"]
+      ],
+      "outro": [
+        ["vi", "IV", "I", "V"],
+        ["I", "IV", "I", "I"]
+      ]
+    },
+    "minor": {
+      "intro": [
+        ["i", "VI", "III", "VII"],
+        ["i", "VII", "VI", "VII"]
+      ],
+      "verse": [
+        ["i", "VI", "III", "VII"],
+        ["i", "VII", "VI", "VII"],
+        ["i", "iv", "VII", "III"],
+        ["i", "VI", "iv", "V"]
+      ],
+      "chorus": [
+        ["VI", "III", "VII", "i"],
+        ["i", "III", "VII", "VI"],
+        ["VI", "VII", "i", "i"],
+        ["i", "VI", "VII", "i"]
+      ],
+      "outro": [
+        ["i", "VII", "VI", "VII"],
+        ["i", "VI", "i", "i"]
+      ]
+    }
+  },
+
+  "chordTypes": {
+    "major": {
+      "I": "maj",
+      "ii": "m",
+      "iii": "m",
+      "IV": "maj",
+      "V": "maj",
+      "vi": "m",
+      "vii": "dim"
+    },
+    "minor": {
+      "i": "m",
+      "ii": "dim",
+      "III": "maj",
+      "iv": "m",
+      "V": "maj",
+      "VI": "maj",
+      "VII": "maj"
+    }
+  },
+
+  "degreeIndexes": {
+    "I": 0,
+    "i": 0,
+    "ii": 1,
+    "III": 2,
+    "iii": 2,
+    "IV": 3,
+    "iv": 3,
+    "V": 4,
+    "VI": 5,
+    "vi": 5,
+    "VII": 6,
+    "vii": 6
+  },
+
+  "fallbackScales": {
+    "major": ["C4", "D4", "E4", "G4", "A4", "C5"],
+    "minor": ["A3", "C4", "D4", "E4", "G4", "A4"]
+  },
+
+  "grooves": [
+    {
+      "name": "straight",
+      "melodyDurations": ["8n", "8n", "4n", "8n", "8n", "4n"],
+      "drumPatterns": {
+        "intro": [],
+        "verse": [
+          { "time": 0, "type": "kick", "velocity": 0.65 },
+          { "time": 2, "type": "hat", "velocity": 0.35 },
+          { "time": 4, "type": "kick", "velocity": 0.58 },
+          { "time": 6, "type": "hat", "velocity": 0.35 }
+        ],
+        "chorus": [
+          { "time": 0, "type": "kick", "velocity": 0.82 },
+          { "time": 1, "type": "hat", "velocity": 0.45 },
+          { "time": 2, "type": "kick", "velocity": 0.72 },
+          { "time": 3, "type": "hat", "velocity": 0.45 },
+          { "time": 4, "type": "kick", "velocity": 0.82 },
+          { "time": 5, "type": "hat", "velocity": 0.45 },
+          { "time": 6, "type": "kick", "velocity": 0.72 },
+          { "time": 7, "type": "hat", "velocity": 0.45 }
+        ],
+        "outro": [
+          { "time": 0, "type": "kick", "velocity": 0.45 },
+          { "time": 4, "type": "hat", "velocity": 0.25 }
+        ]
+      }
+    },
+    {
+      "name": "syncopated",
+      "melodyDurations": ["8n", "16n", "16n", "4n", "8n", "8n"],
+      "drumPatterns": {
+        "intro": [],
+        "verse": [
+          { "time": 0, "type": "kick", "velocity": 0.65 },
+          { "time": 1.5, "type": "hat", "velocity": 0.32 },
+          { "time": 3, "type": "kick", "velocity": 0.52 },
+          { "time": 4.5, "type": "hat", "velocity": 0.36 },
+          { "time": 6, "type": "hat", "velocity": 0.32 }
+        ],
+        "chorus": [
+          { "time": 0, "type": "kick", "velocity": 0.84 },
+          { "time": 1, "type": "hat", "velocity": 0.44 },
+          { "time": 1.5, "type": "hat", "velocity": 0.34 },
+          { "time": 3, "type": "kick", "velocity": 0.72 },
+          { "time": 4.5, "type": "hat", "velocity": 0.46 },
+          { "time": 5.5, "type": "hat", "velocity": 0.35 },
+          { "time": 6, "type": "kick", "velocity": 0.74 }
+        ],
+        "outro": [
+          { "time": 0, "type": "kick", "velocity": 0.42 },
+          { "time": 4.5, "type": "hat", "velocity": 0.28 }
+        ]
+      }
+    },
+    {
+      "name": "slow-pop",
+      "melodyDurations": ["4n", "8n", "8n", "2n"],
+      "drumPatterns": {
+        "intro": [],
+        "verse": [
+          { "time": 0, "type": "kick", "velocity": 0.55 },
+          { "time": 4, "type": "hat", "velocity": 0.3 }
+        ],
+        "chorus": [
+          { "time": 0, "type": "kick", "velocity": 0.75 },
+          { "time": 2, "type": "hat", "velocity": 0.42 },
+          { "time": 4, "type": "kick", "velocity": 0.7 },
+          { "time": 6, "type": "hat", "velocity": 0.42 }
+        ],
+        "outro": [
+          { "time": 0, "type": "kick", "velocity": 0.35 }
+        ]
+      }
+    },
+    {
+      "name": "dance",
+      "melodyDurations": ["8n", "8n", "8n", "8n", "4n"],
+      "drumPatterns": {
+        "intro": [
+          { "time": 0, "type": "hat", "velocity": 0.25 },
+          { "time": 4, "type": "hat", "velocity": 0.28 }
+        ],
+        "verse": [
+          { "time": 0, "type": "kick", "velocity": 0.72 },
+          { "time": 1, "type": "hat", "velocity": 0.36 },
+          { "time": 2, "type": "kick", "velocity": 0.62 },
+          { "time": 3, "type": "hat", "velocity": 0.36 },
+          { "time": 4, "type": "kick", "velocity": 0.72 },
+          { "time": 5, "type": "hat", "velocity": 0.36 },
+          { "time": 6, "type": "kick", "velocity": 0.62 },
+          { "time": 7, "type": "hat", "velocity": 0.36 }
+        ],
+        "chorus": [
+          { "time": 0, "type": "kick", "velocity": 0.9 },
+          { "time": 0.5, "type": "hat", "velocity": 0.42 },
+          { "time": 1, "type": "hat", "velocity": 0.48 },
+          { "time": 2, "type": "kick", "velocity": 0.82 },
+          { "time": 2.5, "type": "hat", "velocity": 0.42 },
+          { "time": 3, "type": "hat", "velocity": 0.48 },
+          { "time": 4, "type": "kick", "velocity": 0.9 },
+          { "time": 4.5, "type": "hat", "velocity": 0.42 },
+          { "time": 5, "type": "hat", "velocity": 0.48 },
+          { "time": 6, "type": "kick", "velocity": 0.82 },
+          { "time": 6.5, "type": "hat", "velocity": 0.42 },
+          { "time": 7, "type": "hat", "velocity": 0.48 }
+        ],
+        "outro": [
+          { "time": 0, "type": "kick", "velocity": 0.5 },
+          { "time": 4, "type": "hat", "velocity": 0.3 }
+        ]
+      }
+    }
+  ],
+
+  "melody": {
+    "sections": {
+      "intro": {
+        "durations": ["4n", "8n", "8n", "2n"],
+        "restProbability": 0.45,
+        "chordToneProbability": 0.85,
+        "octaves": [4],
+        "velocityBase": 0.34,
+        "velocityRange": 0.18
+      },
+      "verse": {
+        "durations": ["8n", "8n", "4n", "16n", "8n"],
+        "restProbability": 0.22,
+        "chordToneProbability": 0.65,
+        "octaves": [4, 4, 5],
+        "velocityBase": 0.42,
+        "velocityRange": 0.26
+      },
+      "chorus": {
+        "durations": ["8n", "8n", "8n", "16n", "16n", "4n"],
+        "restProbability": 0.08,
+        "chordToneProbability": 0.78,
+        "octaves": [4, 5, 5],
+        "velocityBase": 0.58,
+        "velocityRange": 0.3
+      },
+      "outro": {
+        "durations": ["4n", "8n", "2n"],
+        "restProbability": 0.38,
+        "chordToneProbability": 0.9,
+        "octaves": [4],
+        "velocityBase": 0.32,
+        "velocityRange": 0.2
+      }
+    }
+  },
+
+  "synthPresets": [
+    { "name": "soft synth", "oscillator": "sine", "attack": 0.02, "release": 0.4 },
+    { "name": "bright lead", "oscillator": "triangle", "attack": 0.01, "release": 0.25 },
+    { "name": "retro square", "oscillator": "square", "attack": 0.03, "release": 0.3 },
+    { "name": "warm pad", "oscillator": "sawtooth", "attack": 0.2, "release": 0.8 }
+  ],
+
+  "mix": {
+    "profiles": [
+      {
+        "name": "lead-focused",
+        "melodyVolume": -5,
+        "chordVolume": -12,
+        "bassVolume": -10,
+        "drumVolume": -11,
+        "vocalVolume": -18
+      },
+      {
+        "name": "bass-heavy",
+        "melodyVolume": -7,
+        "chordVolume": -14,
+        "bassVolume": -7,
+        "drumVolume": -10,
+        "vocalVolume": -20
+      },
+      {
+        "name": "soft-vocal",
+        "melodyVolume": -8,
+        "chordVolume": -15,
+        "bassVolume": -11,
+        "drumVolume": -13,
+        "vocalVolume": -16
+      },
+      {
+        "name": "ambient",
+        "melodyVolume": -9,
+        "chordVolume": -10,
+        "bassVolume": -14,
+        "drumVolume": -17,
+        "vocalVolume": -22
+      }
+    ],
+    "variationDb": {
+      "melodyVolume": 1.5,
+      "chordVolume": 1.5,
+      "bassVolume": 1.5,
+      "drumVolume": 1.5,
+      "vocalVolume": 1.5
+    },
+    "limits": {
+      "melodyVolume": { "min": -16, "max": -3 },
+      "chordVolume": { "min": -20, "max": -8 },
+      "bassVolume": { "min": -18, "max": -6 },
+      "drumVolume": { "min": -18, "max": -7 },
+      "vocalVolume": { "min": -24, "max": -14 }
+    }
+  }
+}

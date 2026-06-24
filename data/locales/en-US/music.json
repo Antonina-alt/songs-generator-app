@@ -120,49 +120,6 @@
       "that hints at bigger ambitions."
     ]
   },
-  "music": {
-    "moods": [
-      "uplifting",
-      "melancholic",
-      "dreamy",
-      "energetic",
-      "nostalgic",
-      "dark",
-      "romantic",
-      "playful",
-      "cinematic",
-      "relaxed"
-    ],
-    "instruments": [
-      "analog synth",
-      "electric piano",
-      "clean guitar",
-      "muted bass",
-      "warm pad",
-      "soft drums",
-      "vintage organ",
-      "pluck synth",
-      "sub bass",
-      "bright lead"
-    ],
-    "tempoRanges": [
-      {
-        "label": "slow",
-        "min": 70,
-        "max": 95
-      },
-      {
-        "label": "medium",
-        "min": 96,
-        "max": 125
-      },
-      {
-        "label": "fast",
-        "min": 126,
-        "max": 155
-      }
-    ]
-  },
   "lyrics": {
     "sequence": [
       "openings",

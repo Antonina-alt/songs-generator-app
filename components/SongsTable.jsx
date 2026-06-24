@@ -77,16 +77,15 @@ function SongsTablePagination({ page, onPageChange, uiText }) {
 }
 
 function createPaginationProps(page, onPageChange, uiText) {
-    return {
-        component: 'div',
-        count: -1,
-        page: page - 1,
-        rowsPerPage: SONGS_PAGE_SIZE,
-        rowsPerPageOptions: [],
-        onPageChange: createPageChangeHandler(onPageChange),
-        labelDisplayedRows: createDisplayedRowsLabel(uiText, page),
-        getItemAriaLabel: createAriaLabel(uiText)
-    };
+    return { ...createPaginationBaseProps(page), ...createPaginationHandlers(page, onPageChange, uiText) };
+}
+
+function createPaginationBaseProps(page) {
+    return { component: 'div', count: -1, page: page - 1, rowsPerPage: SONGS_PAGE_SIZE, rowsPerPageOptions: [] };
+}
+
+function createPaginationHandlers(page, onPageChange, uiText) {
+    return { onPageChange: createPageChangeHandler(onPageChange), labelDisplayedRows: createDisplayedRowsLabel(uiText, page), getItemAriaLabel: createAriaLabel(uiText) };
 }
 
 function createPageChangeHandler(onPageChange) {

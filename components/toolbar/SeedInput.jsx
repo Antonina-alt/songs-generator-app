@@ -9,15 +9,11 @@ export function SeedInput({ value, onChange, uiText }) {
 }
 
 function createSeedInputProps(value, onChange, uiText, isInvalid) {
-    return {
-        size: 'small',
-        label: uiText.controls.seed,
-        value,
-        error: isInvalid,
-        onChange: createChangeHandler(onChange),
-        helperText: getHelperText(isInvalid, uiText),
-        slotProps: createSlotProps()
-    };
+    return { ...createSeedInputBaseProps(value, uiText, isInvalid), onChange: createChangeHandler(onChange), slotProps: createSlotProps() };
+}
+
+function createSeedInputBaseProps(value, uiText, isInvalid) {
+    return { size: 'small', label: uiText.controls.seed, value, error: isInvalid, helperText: getHelperText(isInvalid, uiText) };
 }
 
 function isSeedInputInvalid(value) {

@@ -5,19 +5,26 @@ import { useAudioPreview } from '@/hooks/useAudioPreview';
 import { LyricsDisplay } from './LyricsDisplay';
 
 export function AudioPlayer({ music, lyrics, uiText }) {
-    const playback = useAudioPreview(music, lyrics);
+    const playback = useAudioPreview(music);
     return <Box><PreviewButton music={music} playback={playback} uiText={uiText} /><PreviewLyrics lyrics={lyrics} playback={playback} uiText={uiText} /></Box>;
 }
 
 function PreviewButton({ music, playback, uiText }) {
-    return <Button variant="outlined" onClick={playback.togglePreview} disabled={!canPlay(music)}>{getButtonLabel(playback, uiText)}</Button>;
+    return <Button
+        variant="outlined"
+        onClick={playback.togglePreview}
+        disabled={!canPlay(music) || playback.isLoading}
+    >
+        {getButtonLabel(playback, uiText)}
+    </Button>;
 }
 
 function PreviewLyrics({ lyrics, playback, uiText }) {
     return <LyricsDisplay lyrics={lyrics} currentTime={playback.currentTime} isPlaying={playback.isPlaying} uiText={uiText} />;
 }
 
-function getButtonLabel({ isPlaying }, uiText) {
+function getButtonLabel({ isPlaying, isLoading }, uiText) {
+    if (isLoading) return 'Loading...';
     return isPlaying ? uiText.player.stopPreview : uiText.player.playPreview;
 }
 
