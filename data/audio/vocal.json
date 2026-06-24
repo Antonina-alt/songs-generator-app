@@ -1,0 +1,11 @@
+{
+  "fallbackRegion": "en-US",
+  "mespeakConfigPath": "/vendor/mespeak/mespeak_config.json",
+  "voices": {
+    "en-US": "/vendor/mespeak/voices/en/en-us.json"
+  },
+  "vowels": {
+    "latin": "aeiouyAEIOUY",
+    "cyrillic": "аеёиоуыэюяАЕЁИОУЫЭЮЯ"
+  }
+}

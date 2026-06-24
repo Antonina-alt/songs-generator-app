@@ -1,0 +1,105 @@
+{
+  "defaultRegion": "en-US",
+  "texts": {
+    "en-US": {
+      "controls": {
+        "language": "Language",
+        "seed": "Seed",
+        "randomSeed": "Random seed",
+        "likesPerSong": "Likes per song"
+      },
+      "player": {
+        "playPreview": "Play preview",
+        "stopPreview": "Stop preview",
+        "lyrics": "Lyrics"
+      },
+      "views": {
+        "table": "Table View",
+        "gallery": "Gallery View"
+      },
+      "table": {
+        "columns": [
+          "",
+          "#",
+          "Title",
+          "Artist",
+          "Album",
+          "Genre",
+          "Likes"
+        ],
+        "pagination": {
+          "displayedRows": "{from}–{to}, page {page}",
+          "ariaLabel": {
+            "next": "Go to next page",
+            "previous": "Go to previous page"
+          }
+        }
+      },
+      "regions": {
+        "en-US": "English (USA)",
+        "ru-RU": "Russian (Russia)"
+      },
+      "messages": {
+        "loadDataError": "Failed to load data.",
+        "loadSongsError": "Failed to load songs."
+      },
+      "song": {
+        "likes": "likes",
+        "coverAlt": "{title} cover"
+      },
+      "error": {
+        "seedInputError": "Enter number from 0 to 18446744073709551615"
+      }
+    },
+    "ru-RU": {
+      "controls": {
+        "language": "Язык",
+        "seed": "Сид",
+        "randomSeed": "Случайный сид",
+        "likesPerSong": "Количество лайков на песню"
+      },
+      "player": {
+        "playPreview": "Воспроизвести превью",
+        "stopPreview": "Остановить превью",
+        "lyrics": "Текст песни"
+      },
+      "views": {
+        "table": "Таблица",
+        "gallery": "Галерея"
+      },
+      "table": {
+        "columns": [
+          "",
+          "#",
+          "Название",
+          "Исполнитель",
+          "Альбом",
+          "Жанр",
+          "Лайки"
+        ],
+        "pagination": {
+          "displayedRows": "{from}–{to}, страница {page}",
+          "ariaLabel": {
+            "next": "Перейти на следующую страницу",
+            "previous": "Перейти на предыдущую страницу"
+          }
+        }
+      },
+      "regions": {
+        "en-US": "Английский (США)",
+        "ru-RU": "Русский (Россия)"
+      },
+      "messages": {
+        "loadDataError": "Не удалось загрузить данные.",
+        "loadSongsError": "Не удалось загрузить песни."
+      },
+      "song": {
+        "likes": "лайков",
+        "coverAlt": "Обложка песни «{title}»"
+      },
+      "error": {
+        "seedInputError": "Введите число от 0 до 18446744073709551615"
+      }
+    }
+  }
+}
