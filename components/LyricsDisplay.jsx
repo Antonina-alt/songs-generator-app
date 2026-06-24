@@ -1,7 +1,7 @@
 'use client';
 
+import { useEffect, useId } from 'react';
 import { Box, Typography } from '@mui/material';
-import { useEffect, useRef } from 'react';
 
 const lyricsStyles = {
     mt: 2,
@@ -14,43 +14,56 @@ const lyricsStyles = {
     scrollBehavior: 'smooth'
 };
 
+const lineBaseStyles = {
+    pl: 1.5,
+    py: 0.4,
+    transformOrigin: 'left center',
+    transition: 'all 0.2s ease'
+};
+
+const lineStates = {
+    active: { fontWeight: 700, opacity: 1, transform: 'scale(1.02)' },
+    inactive: { fontWeight: 400, opacity: 0.55, transform: 'scale(1)' }
+};
+
 export function LyricsDisplay({ lyrics = [], currentTime = 0, isPlaying = false, uiText }) {
     if (!lyrics.length) return null;
     return <LyricsPanel lyrics={lyrics} currentTime={currentTime} isPlaying={isPlaying} uiText={uiText} />;
 }
 
 function LyricsPanel({ lyrics, currentTime, isPlaying, uiText }) {
-    const containerRef = useRef(null);
+    const lyricsId = useId();
     const activeIndex = getActiveLineIndex(lyrics, currentTime);
+    const activeLineId = createLineId(lyricsId, activeIndex);
 
-    useActiveLineScroll(containerRef, activeIndex, isPlaying);
-    return <LyricsBox containerRef={containerRef} lyrics={lyrics} activeIndex={activeIndex} isPlaying={isPlaying} uiText={uiText} />;
+    useActiveLineScroll({ lyricsId, activeLineId, isPlaying });
+    return <LyricsBox lyricsId={lyricsId} lyrics={lyrics} activeIndex={activeIndex} activeLineId={activeLineId} isPlaying={isPlaying} uiText={uiText} />;
 }
 
-function LyricsBox({ containerRef, lyrics, activeIndex, isPlaying, uiText }) {
-    return <Box ref={containerRef} sx={lyricsStyles}><LyricsTitle uiText={uiText} />{lyrics.map((line, index) => renderLine(line, index, activeIndex, isPlaying))}</Box>;
+function LyricsBox({ lyricsId, lyrics, activeIndex, activeLineId, isPlaying, uiText }) {
+    return <Box id={lyricsId} sx={lyricsStyles}><LyricsTitle uiText={uiText} />{lyrics.map((line, index) => renderLine({ line, index, activeIndex, activeLineId, isPlaying }))}</Box>;
 }
 
-function renderLine(line, index, activeIndex, isPlaying) {
-    const active = isActive(index, activeIndex, isPlaying);
-    return <LyricsLine key={createLineKey(line)} line={line} isActive={active} />;
+function renderLine(context) {
+    const isActiveLine = isActive(context.index, context.activeIndex, context.isPlaying);
+    return <LyricsLine key={createLineKey(context.line)} line={context.line} id={getLineId(context, isActiveLine)} isActive={isActiveLine} />;
 }
 
-function useActiveLineScroll(containerRef, activeIndex, isPlaying) {
-    useEffect(() => scrollActiveLine(containerRef.current, isPlaying), [containerRef, activeIndex, isPlaying]);
+function LyricsLine({ line, id, isActive }) {
+    return <Typography id={id} sx={createLineStyles(isActive)}>{line.text}</Typography>;
 }
 
-function scrollActiveLine(container, isPlaying) {
-    if (!isPlaying || !container) return;
-    centerActiveLineInsideContainer(container, findActiveLine(container));
+function useActiveLineScroll(context) {
+    useEffect(() => scrollActiveLine(context), [context.lyricsId, context.activeLineId, context.isPlaying]);
 }
 
-function findActiveLine(container) {
-    return container.querySelector('[data-active="true"]');
+function scrollActiveLine({ lyricsId, activeLineId, isPlaying }) {
+    if (!isPlaying) return;
+    centerActiveLine(getElement(lyricsId), getElement(activeLineId));
 }
 
-function centerActiveLineInsideContainer(container, line) {
-    if (line) container.scrollTop = Math.max(0, getTargetScrollTop(container, line));
+function centerActiveLine(container, line) {
+    if (container && line) container.scrollTop = Math.max(0, getTargetScrollTop(container, line));
 }
 
 function getTargetScrollTop(container, line) {
@@ -61,6 +74,18 @@ function getLineTopInsideContainer(container, line) {
     return line.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop;
 }
 
+function createLineStyles(isActive) {
+    return { ...lineBaseStyles, ...lineStates[isActive ? 'active' : 'inactive'] };
+}
+
+function getLineId({ activeLineId }, isActiveLine) {
+    return isActiveLine ? activeLineId : undefined;
+}
+
+function getElement(id) {
+    return document.getElementById(id);
+}
+
 function isActive(index, activeIndex, isPlaying) {
     return isPlaying && index === activeIndex;
 }
@@ -69,16 +94,12 @@ function createLineKey(line) {
     return `${line.time}-${line.text}`;
 }
 
+function createLineId(lyricsId, index) {
+    return `${lyricsId}-line-${index}`;
+}
+
 function LyricsTitle({ uiText }) {
     return <Typography variant="subtitle2" sx={{ mb: 1 }}>{uiText.player.lyrics}</Typography>;
-}
-
-function LyricsLine({ line, isActive }) {
-    return <Typography data-active={String(isActive)} sx={createLineStyles(isActive)}>{line.text}</Typography>;
-}
-
-function createLineStyles(isActive) {
-    return { pl: 1.5, py: 0.4, fontWeight: isActive ? 700 : 400, opacity: isActive ? 1 : 0.55, transform: isActive ? 'scale(1.02)' : 'scale(1)', transformOrigin: 'left center', transition: 'all 0.2s ease' };
 }
 
 function getActiveLineIndex(lyrics, currentTime) {

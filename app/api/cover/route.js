@@ -1,27 +1,15 @@
 import { createRng } from '@/lib/randomGenerator';
 import { generateSong } from '@/lib/generateSong';
 import { createCoverSvg } from '@/lib/cover/svg';
-import { DEFAULT_PAGE } from '@/lib/songs/constants';
-import { createErrorResponse, getNumberParam, getRegionParam, getSearchParams, getSeedParam } from '@/lib/api/params';
+import { createErrorResponse, parseCoverParams } from '@/lib/api/params';
 
 export function GET(request) {
     try {
-        const params = getCoverParams(request);
-        const svg = createSongCoverSvg(params);
-        return createSvgResponse(svg);
+        const params = parseCoverParams(request);
+        return createSvgResponse(createSongCoverSvg(params));
     } catch (error) {
         return createErrorResponse(error);
     }
-}
-
-function getCoverParams(request) {
-    const searchParams = getSearchParams(request);
-
-    return {
-        region: getRegionParam(searchParams),
-        seed: getSeedParam(searchParams),
-        index: getNumberParam(searchParams, 'index', DEFAULT_PAGE)
-    };
 }
 
 function createSongCoverSvg(params) {

@@ -261,13 +261,11 @@
     },
     {
       "id": "low_poly",
-      "weight": 8,
-      "library": "delaunator"
+      "weight": 8
     },
     {
       "id": "paper_layers",
-      "weight": 8,
-      "library": "roughjs"
+      "weight": 8
     },
     {
       "id": "large_cutout_shapes",
@@ -303,8 +301,7 @@
     },
     {
       "id": "torn_paper",
-      "weight": 6,
-      "library": "roughjs"
+      "weight": 6
     },
     {
       "id": "concentric_rings",
@@ -681,8 +678,7 @@
       "densityRange": [
         18,
         56
-      ],
-      "library": "roughjs"
+      ]
     },
     {
       "id": "fold_marks",
@@ -706,8 +702,7 @@
       "densityRange": [
         4,
         12
-      ],
-      "library": "roughjs"
+      ]
     }
   ],
   "frames": [
@@ -728,10 +723,6 @@
       "weight": 7
     },
     {
-      "id": "rounded_label",
-      "weight": 6
-    },
-    {
       "id": "off_center_mat",
       "weight": 5
     },
@@ -741,8 +732,7 @@
     },
     {
       "id": "rough_hand_drawn",
-      "weight": 6,
-      "library": "roughjs"
+      "weight": 6
     },
     {
       "id": "ticket_stub",
@@ -751,98 +741,6 @@
     {
       "id": "vinyl_sleeve_cutout",
       "weight": 4
-    }
-  ],
-  "shapeSets": [
-    {
-      "id": "geometric",
-      "weight": 9,
-      "shapes": [
-        "circle",
-        "rectangle",
-        "triangle",
-        "arc",
-        "line",
-        "polygon"
-      ]
-    },
-    {
-      "id": "organic",
-      "weight": 8,
-      "shapes": [
-        "blob",
-        "leaf",
-        "wave",
-        "oval",
-        "squiggle"
-      ]
-    },
-    {
-      "id": "music_hardware",
-      "weight": 8,
-      "shapes": [
-        "speaker",
-        "knob",
-        "slider",
-        "cable",
-        "jack",
-        "reel"
-      ]
-    },
-    {
-      "id": "celestial",
-      "weight": 6,
-      "shapes": [
-        "star",
-        "planet",
-        "orbit",
-        "moon",
-        "spark"
-      ]
-    },
-    {
-      "id": "urban",
-      "weight": 6,
-      "shapes": [
-        "window",
-        "building",
-        "sign",
-        "streetlight",
-        "stairs"
-      ]
-    },
-    {
-      "id": "editorial",
-      "weight": 7,
-      "shapes": [
-        "caption_box",
-        "rule_line",
-        "label",
-        "sticker",
-        "cutout"
-      ]
-    },
-    {
-      "id": "nature",
-      "weight": 6,
-      "shapes": [
-        "mountain",
-        "sun",
-        "cloud",
-        "flower",
-        "stem"
-      ]
-    },
-    {
-      "id": "digital",
-      "weight": 6,
-      "shapes": [
-        "pixel",
-        "glitch_block",
-        "scanline",
-        "cursor",
-        "matrix_dot"
-      ]
     }
   ],
   "typography": [
@@ -949,67 +847,6 @@
       "caseMode": "original"
     }
   ],
-  "effects": [
-    {
-      "id": "none",
-      "weight": 8
-    },
-    {
-      "id": "subtle_shadow",
-      "weight": 10
-    },
-    {
-      "id": "soft_glow",
-      "weight": 7
-    },
-    {
-      "id": "duotone_overlay",
-      "weight": 6
-    },
-    {
-      "id": "multiply_blocks",
-      "weight": 6
-    },
-    {
-      "id": "misprint_offset",
-      "weight": 5
-    },
-    {
-      "id": "vignette",
-      "weight": 6
-    },
-    {
-      "id": "blurred_back_shape",
-      "weight": 6
-    }
-  ],
-  "roughOptions": {
-    "fillStyles": [
-      "hachure",
-      "solid",
-      "zigzag",
-      "cross-hatch",
-      "dots",
-      "dashed",
-      "zigzag-line"
-    ],
-    "roughnessRange": [
-      0.6,
-      2.8
-    ],
-    "bowingRange": [
-      0.4,
-      2.2
-    ],
-    "hachureGapRange": [
-      4,
-      14
-    ],
-    "strokeWidthRange": [
-      1,
-      5
-    ]
-  },
   "motifSettings": {
     "vinyl": {
       "ringCountRange": [
@@ -1261,14 +1098,5 @@
         8
       ]
     }
-  },
-  "generationRules": {
-    "avoidSamePaletteForAdjacentItems": false,
-    "useTitleAsRenderedText": true,
-    "useArtistAsRenderedText": true,
-    "useAlbumAsRenderedText": false,
-    "renderTechnicalIdsAsText": false,
-    "seededRandomRequired": true,
-    "likesMustNotAffectCover": true
   }
 }

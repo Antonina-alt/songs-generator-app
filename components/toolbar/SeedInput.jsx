@@ -1,7 +1,7 @@
 'use client';
 
 import { TextField } from '@mui/material';
-import { isValidSeed64 } from '@/lib/randomGenerator';
+import { isValidSeed64 } from '@/lib/seed';
 
 export function SeedInput({ value, onChange, uiText }) {
     const isInvalid = isSeedInputInvalid(value);
