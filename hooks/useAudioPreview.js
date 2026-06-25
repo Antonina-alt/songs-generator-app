@@ -5,129 +5,74 @@ import * as Tone from 'tone';
 import { createPlayer, disposePlayer } from '@/lib/audio/player';
 import { activatePreview, deactivatePreview } from '@/lib/audio/previewCoordinator';
 
+const PLAYBACK = {
+    idle: 'idle',
+    loading: 'loading',
+    playing: 'playing'
+};
+
 export function useAudioPreview(music, previewId) {
     const fallbackId = useId();
     const id = previewId ?? fallbackId;
-    const refs = usePreviewRefs();
+    const playerRef = useRef(null);
+    const requestRef = useRef(0);
     const [playback, setPlayback] = useState(createIdlePlayback);
-    usePreviewCleanup(refs, id);
-    return usePlaybackApi(music, id, playback, refs, setPlayback);
-}
 
-function usePreviewRefs() {
-    return { playerRef: useRef(null), requestRef: useRef(0) };
-}
+    const disposePreview = useCallback(() => {
+        deactivatePreview(id);
+        requestRef.current += 1;
+        disposePlayer(playerRef.current);
+        playerRef.current = null;
+    }, [id]);
 
-function usePreviewCleanup({ playerRef, requestRef }, previewId) {
-    useEffect(() => createCleanup({ playerRef, requestRef, previewId }), [playerRef, requestRef, previewId]);
-}
+    const stopPreview = useCallback(() => {
+        disposePreview();
+        setPlayback(createIdlePlayback());
+    }, [disposePreview]);
 
-function usePlaybackApi(music, previewId, playback, refs, setPlayback) {
-    const togglePreview = useTogglePreview(music, previewId, playback.status, refs.playerRef, refs.requestRef, setPlayback);
-    return createPlaybackApi(playback, togglePreview);
-}
+    const togglePreview = useCallback(async () => {
+        if (!music?.tempo || playback.status === PLAYBACK.loading) return;
+        if (playback.status === PLAYBACK.playing) return stopPreview();
 
-function useTogglePreview(music, previewId, status, playerRef, requestRef, setPlayback) {
-    return useCallback(
-        () => handleToggle({ music, previewId, status, playerRef, requestRef, setPlayback }),
-        [music, previewId, status, playerRef, requestRef, setPlayback]
-    );
-}
+        const requestId = requestRef.current + 1;
+        requestRef.current = requestId;
+        activatePreview(id, stopPreview);
+        setPlayback(createLoadingPlayback());
 
-function createPlaybackApi(playback, togglePreview) {
-    return { ...createPlaybackFlags(playback), currentTime: playback.currentTime, togglePreview };
-}
+        try {
+            await Tone.start();
+            if (requestId !== requestRef.current) return;
 
-function createPlaybackFlags({ status }) {
-    return { isPlaying: status === 'playing', isLoading: status === 'loading' };
-}
+            disposePlayer(playerRef.current);
+            playerRef.current = createPlayer(music, updateCurrentTime(setPlayback), stopPreview);
+            setPlayback(createPlayingPlayback());
+        } catch {
+            stopPreview();
+        }
+    }, [id, music, playback.status, stopPreview]);
 
-function createIdlePlayback() {
-    return { status: 'idle', currentTime: 0 };
-}
+    useEffect(() => disposePreview, [disposePreview]);
 
-function createLoadingPlayback() {
-    return { status: 'loading', currentTime: 0 };
-}
-
-function createPlayingPlayback() {
-    return { status: 'playing', currentTime: 0 };
-}
-
-function createCleanup(context) {
-    return () => {
-        deactivatePreview(context.previewId);
-        disposePreview(context);
+    return {
+        isPlaying: playback.status === PLAYBACK.playing,
+        isLoading: playback.status === PLAYBACK.loading,
+        currentTime: playback.currentTime,
+        togglePreview
     };
 }
 
-function handleToggle(context) {
-    if (!canToggle(context)) return;
-    if (context.status === 'playing') return stopPreview(context);
-    return startPreview(context);
+function createIdlePlayback() {
+    return { status: PLAYBACK.idle, currentTime: 0 };
 }
 
-function canToggle({ music, status }) {
-    return Boolean(music?.tempo) && status !== 'loading';
+function createLoadingPlayback() {
+    return { status: PLAYBACK.loading, currentTime: 0 };
 }
 
-async function startPreview(context) {
-    const requestId = createRequest(context.requestRef);
-    activatePreview(context.previewId, () => stopPreview(context));
-    setPlaybackState(context, createLoadingPlayback());
-
-    try {
-        return await createPreview(context, requestId);
-    } catch {
-        return stopPreview(context);
-    }
+function createPlayingPlayback() {
+    return { status: PLAYBACK.playing, currentTime: 0 };
 }
 
-function createRequest(requestRef) {
-    requestRef.current += 1;
-    return requestRef.current;
-}
-
-async function createPreview(context, requestId) {
-    await Tone.start();
-    if (!isLatestRequest(context.requestRef, requestId)) return;
-    startPlayer(context);
-    setPlaybackState(context, createPlayingPlayback());
-}
-
-function startPlayer(context) {
-    clearPlayer(context.playerRef);
-    context.playerRef.current = createPlayer(context.music, setCurrentTime(context.setPlayback), stopAction(context));
-}
-
-function stopAction(context) {
-    return () => stopPreview(context);
-}
-
-function stopPreview(context) {
-    deactivatePreview(context.previewId);
-    disposePreview(context);
-    context.setPlayback(createIdlePlayback());
-}
-
-function disposePreview({ playerRef, requestRef }) {
-    createRequest(requestRef);
-    clearPlayer(playerRef);
-}
-
-function clearPlayer(playerRef) {
-    disposePlayer(playerRef.current);
-    playerRef.current = null;
-}
-
-function setPlaybackState({ setPlayback }, state) {
-    setPlayback(state);
-}
-
-function isLatestRequest(requestRef, requestId) {
-    return requestId === requestRef.current;
-}
-
-function setCurrentTime(setPlayback) {
+function updateCurrentTime(setPlayback) {
     return (currentTime) => setPlayback((playback) => ({ ...playback, currentTime }));
 }

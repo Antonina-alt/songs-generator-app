@@ -1,7 +1,7 @@
 'use client';
 
 import { TextField } from '@mui/material';
-import { isValidSeed64 } from '@/lib/seed';
+import { isValidSeed64 } from '@/lib/seed/validation';
 
 const seedInputStyles = {
     width: 300

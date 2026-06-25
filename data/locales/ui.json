@@ -45,7 +45,10 @@
         "loadSongsError": "Failed to load songs."
       },
       "song": {
-        "likes": "likes",
+        "likes": {
+          "one": "{count} like",
+          "other": "{count} likes"
+        },
         "coverAlt": "{title} cover"
       },
       "error": {
@@ -96,7 +99,12 @@
         "loadSongsError": "Не удалось загрузить песни."
       },
       "song": {
-        "likes": "лайков",
+        "likes": {
+          "one": "{count} лайк",
+          "few": "{count} лайка",
+          "many": "{count} лайков",
+          "other": "{count} лайка"
+        },
         "coverAlt": "Обложка песни «{title}»"
       },
       "error": {

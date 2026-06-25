@@ -2,6 +2,13 @@
 
 import { Box, CardMedia } from '@mui/material';
 
+const cardCoverStyles = {
+    width: '100%',
+    aspectRatio: '1 / 1',
+    objectFit: 'contain',
+    display: 'block'
+};
+
 const detailsCoverStyles = {
     width: 220,
     height: 220,
@@ -18,7 +25,7 @@ export function SongDetailsCover({ song, uiText }) {
 }
 
 function createCardCoverProps(song, uiText) {
-    return { component: 'img', height: '220', image: song.coverUrl, alt: getCoverAlt(song, uiText) };
+    return { component: 'img', image: song.coverUrl, alt: getCoverAlt(song, uiText), sx: cardCoverStyles };
 }
 
 function createDetailsCoverProps(song, uiText) {
