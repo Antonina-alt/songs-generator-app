@@ -4,8 +4,8 @@ import { Box, Button } from '@mui/material';
 import { useAudioPreview } from '@/hooks/useAudioPreview';
 import { LyricsDisplay } from './LyricsDisplay';
 
-export function AudioPlayer({ music, lyrics, uiText }) {
-    const playback = useAudioPreview(music);
+export function AudioPlayer({ music, lyrics, uiText, previewId }) {
+    const playback = useAudioPreview(music, previewId);
     return <Box><PreviewButton music={music} playback={playback} uiText={uiText} /><PreviewLyrics lyrics={lyrics} playback={playback} uiText={uiText} /></Box>;
 }
 
@@ -24,7 +24,7 @@ function PreviewLyrics({ lyrics, playback, uiText }) {
 }
 
 function getButtonLabel({ isPlaying, isLoading }, uiText) {
-    if (isLoading) return 'Loading...';
+    if (isLoading) return uiText.player.loadingPreview;
     return isPlaying ? uiText.player.stopPreview : uiText.player.playPreview;
 }
 

@@ -6,16 +6,20 @@ import { Box, CircularProgress, Grid } from '@mui/material';
 import { QueryState } from './common/QueryState';
 import { SongCard } from './SongCard';
 import { useInfiniteSongsQuery } from '@/hooks/useInfiniteSongsQuery';
+import { createSongQueryKey } from '@/lib/songs/identity';
+import { VIEW_TYPES } from '@/lib/songs/constants';
 
 const galleryStyles = {
-    maxHeight: '75vh',
-    overflowY: 'auto',
-    pr: 1
+    pb: 4
 };
 
 const loaderStyles = {
     py: 3,
     textAlign: 'center'
+};
+
+const galleryItemStyles = {
+    display: 'flex'
 };
 
 export function GalleryView({ uiText, ...queryParams }) {
@@ -29,7 +33,7 @@ export function GalleryView({ uiText, ...queryParams }) {
 }
 
 function GalleryPanel({ query, queryParams, uiText }) {
-    return <Box key={createGalleryKey(queryParams)} sx={galleryStyles}><GalleryGrid songs={getQuerySongs(query)} uiText={uiText} /><InfiniteLoader query={query} /></Box>;
+    return <Box key={createSongQueryKey(VIEW_TYPES.gallery, queryParams)} sx={galleryStyles}><GalleryGrid songs={getQuerySongs(query)} uiText={uiText} /><InfiniteLoader query={query} /></Box>;
 }
 
 function GalleryGrid({ songs, uiText }) {
@@ -50,7 +54,7 @@ function loadNextPage(inView, query) {
 }
 
 function renderSongCard(song, uiText) {
-    return <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={song.index}><SongCard song={song} uiText={uiText} /></Grid>;
+    return (<Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={song.index} sx={galleryItemStyles}><SongCard song={song} uiText={uiText} /></Grid>);
 }
 
 function renderLoader(query) {
@@ -61,9 +65,6 @@ function canLoadNextPage(query) {
     return query.hasNextPage && !query.isFetchingNextPage;
 }
 
-function createGalleryKey({ region, seed, likes }) {
-    return [region, seed, likes].join(':');
-}
 
 function getQuerySongs(query) {
     return query.data?.pages.flatMap((page) => page.items) ?? [];

@@ -9,6 +9,7 @@ import { ViewSwitcher } from '@/components/ViewSwitcher';
 import { useSongFilters } from '@/hooks/useSongFilters';
 import { createRandomSeed64 } from '@/lib/randomGenerator';
 import { VIEW_TYPES } from '@/lib/songs/constants';
+import { createPagedSongQueryKey, createSongQueryKey } from '@/lib/songs/identity';
 import { getUiText } from '@/lib/uiText';
 
 export default function HomePage() {
@@ -16,8 +17,10 @@ export default function HomePage() {
 
     return (
         <PageLayout>
-            <AppToolbar {...pageState.toolbarProps} />
-            <ViewSwitcher {...pageState.viewProps} />
+            <StickyControls>
+                <AppToolbar {...pageState.toolbarProps} />
+                <ViewSwitcher {...pageState.viewProps} />
+            </StickyControls>
             <SongsView {...pageState.songsViewProps} />
         </PageLayout>
     );
@@ -75,6 +78,24 @@ function PageLayout({ children }) {
 }
 
 function SongsView({ view, filters, page, onPageChange, uiText }) {
-    if (view === VIEW_TYPES.gallery) return <GalleryView {...filters} uiText={uiText} />;
-    return <SongsTable {...filters} page={page} onPageChange={onPageChange} uiText={uiText} />;
+    if (view === VIEW_TYPES.gallery) {
+        return <GalleryView key={createSongQueryKey(VIEW_TYPES.gallery, filters)} {...filters} uiText={uiText} />;
+    }
+    return (<SongsTable key={createPagedSongQueryKey(VIEW_TYPES.table, { ...filters, page })}{...filters} page={page} onPageChange={onPageChange} uiText={uiText}/>);
 }
+
+
+function StickyControls({ children }) {
+    return <Box sx={stickyControlsStyles}>{children}</Box>;
+}
+
+const stickyControlsStyles = {
+    position: 'sticky',
+    top: 0,
+    zIndex: (theme) => theme.zIndex.appBar,
+    bgcolor: 'background.default',
+    py: 2,
+    mb: 3,
+    borderBottom: 1,
+    borderColor: 'divider'
+};

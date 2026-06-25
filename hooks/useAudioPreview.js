@@ -1,31 +1,37 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import * as Tone from 'tone';
 import { createPlayer, disposePlayer } from '@/lib/audio/player';
+import { activatePreview, deactivatePreview } from '@/lib/audio/previewCoordinator';
 
-export function useAudioPreview(music) {
+export function useAudioPreview(music, previewId) {
+    const fallbackId = useId();
+    const id = previewId ?? fallbackId;
     const refs = usePreviewRefs();
     const [playback, setPlayback] = useState(createIdlePlayback);
-    usePreviewCleanup(refs);
-    return usePlaybackApi(music, playback, refs, setPlayback);
+    usePreviewCleanup(refs, id);
+    return usePlaybackApi(music, id, playback, refs, setPlayback);
 }
 
 function usePreviewRefs() {
     return { playerRef: useRef(null), requestRef: useRef(0) };
 }
 
-function usePreviewCleanup({ playerRef, requestRef }) {
-    useEffect(() => createCleanup({ playerRef, requestRef }), [playerRef, requestRef]);
+function usePreviewCleanup({ playerRef, requestRef }, previewId) {
+    useEffect(() => createCleanup({ playerRef, requestRef, previewId }), [playerRef, requestRef, previewId]);
 }
 
-function usePlaybackApi(music, playback, refs, setPlayback) {
-    const togglePreview = useTogglePreview(music, playback.status, refs.playerRef, refs.requestRef, setPlayback);
+function usePlaybackApi(music, previewId, playback, refs, setPlayback) {
+    const togglePreview = useTogglePreview(music, previewId, playback.status, refs.playerRef, refs.requestRef, setPlayback);
     return createPlaybackApi(playback, togglePreview);
 }
 
-function useTogglePreview(music, status, playerRef, requestRef, setPlayback) {
-    return useCallback(() => handleToggle({ music, status, playerRef, requestRef, setPlayback }), [music, status, playerRef, requestRef, setPlayback]);
+function useTogglePreview(music, previewId, status, playerRef, requestRef, setPlayback) {
+    return useCallback(
+        () => handleToggle({ music, previewId, status, playerRef, requestRef, setPlayback }),
+        [music, previewId, status, playerRef, requestRef, setPlayback]
+    );
 }
 
 function createPlaybackApi(playback, togglePreview) {
@@ -49,7 +55,10 @@ function createPlayingPlayback() {
 }
 
 function createCleanup(context) {
-    return () => disposePreview(context);
+    return () => {
+        deactivatePreview(context.previewId);
+        disposePreview(context);
+    };
 }
 
 function handleToggle(context) {
@@ -64,6 +73,7 @@ function canToggle({ music, status }) {
 
 async function startPreview(context) {
     const requestId = createRequest(context.requestRef);
+    activatePreview(context.previewId, () => stopPreview(context));
     setPlaybackState(context, createLoadingPlayback());
 
     try {
@@ -95,6 +105,7 @@ function stopAction(context) {
 }
 
 function stopPreview(context) {
+    deactivatePreview(context.previewId);
     disposePreview(context);
     context.setPlayback(createIdlePlayback());
 }

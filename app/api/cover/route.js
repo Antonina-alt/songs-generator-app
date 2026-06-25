@@ -17,8 +17,8 @@ function createSongCoverSvg(params) {
     return createCoverSvg({ song, random: createCoverRandom(params) });
 }
 
-function createCoverRandom({ region, seed, index }) {
-    return createRng('cover-art', region, seed, index);
+function createCoverRandom({ region, seed, page, index }) {
+    return createRng('cover-art', region, seed, `${page}:${index}`);
 }
 
 function createSvgResponse(svg) {

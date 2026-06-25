@@ -1,6 +1,7 @@
 {
-  "locale": "ru-RU",
-  "displayName": "Русский (Россия)",
+  "phonetics": {
+    "vowels": "аеёиоуыэюя"
+  },
   "genres": [
     "Поп",
     "Инди-поп",
@@ -692,13 +693,5 @@
       "после самого последнего удара",
       "там, где свет начинается"
     ]
-  },
-  "generators": {
-    "songTitle": "customFaker",
-    "artist": "customFaker",
-    "albumTitle": "customFaker",
-    "genre": "customFaker",
-    "review": "customFaker",
-    "lyrics": "customFaker"
   }
 }

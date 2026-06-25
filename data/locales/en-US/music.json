@@ -1,6 +1,7 @@
 {
-  "locale": "en-US",
-  "displayName": "English (USA)",
+  "phonetics": {
+    "vowels": "aeiouy"
+  },
   "reviews": {
     "patterns": [
       "{opening} {middle} {ending}",
@@ -260,13 +261,11 @@
       "where the light begins"
     ]
   },
-"generators": {
+  "generators": {
     "songTitle": "fakerMusic",
     "artist": "fakerMusic",
     "albumTitle": "fakerMusic",
-    "genre": "fakerMusic",
-    "review": "customFaker",
-    "lyrics": "customFaker"
+    "genre": "fakerMusic"
   },
   "albumTitle": {
     "singleLiteral": "Single"

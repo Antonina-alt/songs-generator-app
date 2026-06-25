@@ -53,8 +53,10 @@ function LyricsLine({ line, id, isActive }) {
     return <Typography id={id} sx={createLineStyles(isActive)}>{line.text}</Typography>;
 }
 
-function useActiveLineScroll(context) {
-    useEffect(() => scrollActiveLine(context), [context.lyricsId, context.activeLineId, context.isPlaying]);
+function useActiveLineScroll({ lyricsId, activeLineId, isPlaying }) {
+    useEffect(() => {
+        scrollActiveLine({ lyricsId, activeLineId, isPlaying });
+    }, [lyricsId, activeLineId, isPlaying]);
 }
 
 function scrollActiveLine({ lyricsId, activeLineId, isPlaying }) {

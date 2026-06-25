@@ -1,14 +1,43 @@
 'use client';
 
-import { Card, CardContent } from '@mui/material';
-import { AudioPlayer } from './AudioPlayer';
+import { Box, Card, CardContent } from '@mui/material';
+import { SongPreview } from './song/SongPreview';
 import { SongCardCover } from './song/SongCover';
 import { SongCardMeta } from './song/SongMeta';
 
+const cardStyles = {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column'
+};
+
+const cardContentStyles = {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column'
+};
+
+const playerStyles = {
+    mt: 'auto'
+};
+
 export function SongCard({ song, uiText }) {
-    return <Card><SongCardCover song={song} uiText={uiText} /><SongCardContent song={song} uiText={uiText} /></Card>;
+    return (
+        <Card sx={cardStyles}>
+            <SongCardCover song={song} uiText={uiText} />
+            <SongCardContent song={song} uiText={uiText} />
+        </Card>
+    );
 }
 
 function SongCardContent({ song, uiText }) {
-    return <CardContent><SongCardMeta song={song} uiText={uiText} /><AudioPlayer music={song.music} lyrics={song.lyrics} uiText={uiText} /></CardContent>;
+    return (
+        <CardContent sx={cardContentStyles}>
+            <SongCardMeta song={song} uiText={uiText} />
+            <Box sx={playerStyles}>
+                <SongPreview song={song} uiText={uiText} />
+            </Box>
+        </CardContent>
+    );
 }
+

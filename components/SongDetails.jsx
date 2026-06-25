@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Typography } from '@mui/material';
-import { AudioPlayer } from './AudioPlayer';
+import { SongPreview } from './song/SongPreview';
 import { SongDetailsCover } from './song/SongCover';
 import { SongDetailsMeta } from './song/SongMeta';
 
@@ -12,5 +12,6 @@ export function SongDetails({ song, uiText }) {
 }
 
 function SongDetailsContent({ song, uiText }) {
-    return <Box><SongDetailsMeta song={song} /><AudioPlayer music={song.music} lyrics={song.lyrics} uiText={uiText} /><Typography sx={{ mt: 2 }}>{song.review}</Typography></Box>;
+    return <Box><SongDetailsMeta song={song} /><SongPreview song={song} uiText={uiText} /><Typography sx={{ mt: 2 }}>{song.review}</Typography></Box>;
 }
+

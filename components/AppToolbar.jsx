@@ -8,9 +8,14 @@ import { SeedInput } from './toolbar/SeedInput';
 const toolbarStyles = {
     display: 'flex',
     gap: 2,
-    alignItems: 'center',
-    mb: 5,
-    flexWrap: 'wrap'
+    alignItems: 'flex-start',
+    mb: 2,
+    flexWrap: 'nowrap',
+    overflow: 'visible'
+};
+
+const toolbarControlStyles = {
+    flexShrink: 0
 };
 
 export function AppToolbar(props) {
@@ -31,7 +36,7 @@ function getToolbarControls(props) {
 }
 
 function renderToolbarControl({ key, node }) {
-    return <Box key={key}>{node}</Box>;
+    return <Box key={key} sx={toolbarControlStyles}>{node}</Box>;
 }
 
 function RandomSeedButton({ onClick, uiText }) {

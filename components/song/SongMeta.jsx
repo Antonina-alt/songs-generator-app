@@ -2,6 +2,20 @@
 
 import { Typography } from '@mui/material';
 
+const cardTitleStyles = {
+    height: '4.7rem',
+    mb: 0.5,
+    whiteSpace: 'normal',
+    overflowWrap: 'anywhere',
+    hyphens: 'auto'
+};
+
+const cardSecondaryTextStyles = {
+    minHeight: '1.45rem',
+    whiteSpace: 'normal',
+    overflowWrap: 'anywhere'
+};
+
 export function SongCardMeta({ song, uiText }) {
     return <SongMetaLayout items={createCardMetaItems(song, uiText)} />;
 }
@@ -19,10 +33,11 @@ function renderMetaItem(item) {
 }
 
 function createCardMetaItems(song, uiText) {
+    const title = `${song.index}. ${song.title}`;
     return [
-        createTitleItem(`${song.index}. ${song.title}`, true),
-        createMutedItem('artist', song.artist, true),
-        createMutedItem('album', song.album, true),
+        createCardTitleItem(title),
+        createCardMutedItem('artist', song.artist),
+        createCardMutedItem('album', song.album),
         createBodyItem('stats', `${song.genre} · ${song.likes} ${uiText.song.likes}`, { mb: 1 })
     ];
 }
@@ -43,14 +58,31 @@ function createSubtitleItem(key, text) {
     return createMetaItem(key, text, { variant: 'subtitle1' });
 }
 
-function createMutedItem(key, text, noWrap) {
-    return createMetaItem(key, text, { variant: 'body2', color: 'text.secondary', noWrap });
-}
-
 function createBodyItem(key, text, sx) {
     return createMetaItem(key, text, { variant: 'body2', sx });
 }
 
 function createMetaItem(key, text, props) {
     return { key, text, props };
+}
+
+function createCardTitleItem(text) {
+    return createMetaItem('title', text, {
+        variant: 'h6',
+        sx: [cardTitleStyles, getCardTitleFitStyles(text)]
+    });
+}
+
+function createCardMutedItem(key, text) {
+    return createMetaItem(key, text, {
+        variant: 'body2',
+        color: 'text.secondary',
+        sx: cardSecondaryTextStyles
+    });
+}
+
+function getCardTitleFitStyles(text) {
+    if (text.length > 70) return { fontSize: '0.9rem', lineHeight: 1.2 };
+    if (text.length > 48) return { fontSize: '1rem', lineHeight: 1.25 };
+    return {};
 }

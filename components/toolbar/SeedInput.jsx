@@ -3,13 +3,24 @@
 import { TextField } from '@mui/material';
 import { isValidSeed64 } from '@/lib/seed';
 
+const seedInputStyles = {
+    width: 300
+};
+
+const helperTextStyles = {
+    m: '3px 0 0',
+    minHeight: '2.4em',
+    lineHeight: 1.2,
+    whiteSpace: 'normal'
+};
+
 export function SeedInput({ value, onChange, uiText }) {
     const isInvalid = isSeedInputInvalid(value);
     return <TextField {...createSeedInputProps(value, onChange, uiText, isInvalid)} />;
 }
 
 function createSeedInputProps(value, onChange, uiText, isInvalid) {
-    return { ...createSeedInputBaseProps(value, uiText, isInvalid), onChange: createChangeHandler(onChange), slotProps: createSlotProps() };
+    return {...createSeedInputBaseProps(value, uiText, isInvalid), onChange: createChangeHandler(onChange), sx: seedInputStyles, slotProps: createSlotProps()};
 }
 
 function createSeedInputBaseProps(value, uiText, isInvalid) {
@@ -31,10 +42,3 @@ function getHelperText(isInvalid, uiText) {
 function createSlotProps() {
     return { formHelperText: { sx: helperTextStyles } };
 }
-
-const helperTextStyles = {
-    position: 'absolute',
-    top: '100%',
-    m: 0,
-    whiteSpace: 'wrap'
-};
